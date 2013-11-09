@@ -11,5 +11,26 @@
     <string name="show_balance">Show Balance</string>
     <string name="add_funds">+++</string>
     <string name="subtract_funds">---</string>
+    <string name="next">Next</string>
 
+    <string name="app_explanation">Instructions
+		    So here\'s how this works.  Input your income and recurring \'expenses\' (savings, rent, student loans, etc).  I strongly recommend putting money in savings
+		    to cover unpredicted expense (i.e. speeding tickets). The remainder is spending money for items of highly variable cost (i.e. food, gas, clothes, etc).   
+		    
+		    Say for instance you make $1227.12 every 2 weeks after taxes, you might input the following
+		    Income:    $1200 every 2 weeks
+		    Save:      $200 every 2 weeks
+		    Rent:      $500 monthly
+		    Utilities: $120 monthly
+		    Loans:     $400 monthly
+		    Gym Fee:   $50 monthly
+		    Insurance: $550 bi-yearly
+		    
+		    You can spend about $33 per day. (will be calculated for you)
+		    
+		    So instead of getting your pay check and thinking \"now I have a bulk of money to spend!\" you will instead only allow yourself to spend $33 of it each day.
+		    This should help you keep a tight understanding of your finances and give you a better understanding of what things cost.
+		    
+		    So let\'s get started!
+		    </string>
 </resources>

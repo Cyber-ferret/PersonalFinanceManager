@@ -10,12 +10,17 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.math.BigDecimal;
+
+import org.apache.commons.lang3.StringUtils;
 
 public class MainActivity extends Activity {
 	public static String EXTRA_MESSAGE = "f";
@@ -103,13 +108,14 @@ public class MainActivity extends Activity {
 	 * gets the text field then updates the balance via the
 	 * updateBalance method.  It then displays the new balance.
 	 */
-	public void subtractFunds(View view)
+	public void deductFunds(View view)
 	{
-		EditText editText = (EditText) findViewById(R.id.edit_message);
+		//TODO add charge to a CSV
+		TextView editText = (TextView) findViewById(R.id.display_value);
 		String message = editText.getText().toString();
 		try 
 		{
-			int value = Integer.parseInt(message);
+			double value = Double.parseDouble(message);
 			updateBalance(-value);
 		}
 		catch (NumberFormatException e)
@@ -120,12 +126,13 @@ public class MainActivity extends Activity {
 	}
 	
 	/**
-	 * gets the text field then updates the balance via the
+	 * gets the text view then updates the balance via the
 	 * updateBalance method.  It then displays the new balance.
 	 */
 	public void addFunds(View view)
 	{
-		EditText editText = (EditText) findViewById(R.id.edit_message);
+		//TODO add charge to a CSV
+		TextView editText = (TextView) findViewById(R.id.display_value);
 		String message = editText.getText().toString();
 		try 
 		{
@@ -139,31 +146,62 @@ public class MainActivity extends Activity {
 		showBalance(view);
 	}
 	
-	private int getBalance()
+	public void keyPress(View view)
+	{
+		Button buttonPressed = (Button) view;
+		
+		if(buttonPressed.getText().equals("C"))
+		{
+			// Delete most recent Character
+			TextView editText = (TextView) findViewById(R.id.display_value);
+			String newValue = editText.getText().toString();
+			if(newValue.length() > 0)
+			{
+				newValue = newValue.substring(0, newValue.length() - 1);
+				editText.setText(newValue);
+			}
+		}
+		else
+		{
+			// Add the character of whatever key was pressed
+			TextView editText = (TextView) findViewById(R.id.display_value);
+			String newValue = editText.getText().toString();
+			newValue += buttonPressed.getText();
+			
+			boolean cond1 = StringUtils.countMatches(newValue, ".")  <= 1;
+			boolean cond2 = StringUtils.substringAfter(newValue, ".").length() <= 2;
+			if(cond1 && cond2)
+			{
+				editText.setText(newValue);
+			}
+		}
+	}
+	
+	private String getBalance()
 	{
 		String fileName = mapping.get(DataFile.BALANCE);
 		String line = "";
 		try {
 			FileInputStream s = openFileInput(fileName);
 			line = (new Scanner(s)).nextLine();
-			return (Integer.parseInt(line));
+			return line;
 		} catch (FileNotFoundException e) {
 			//raiseFailure("Could not find the file " + fileName, false);
-			return 0;
-		} catch (NumberFormatException e) {
-			//raiseFailure("Could not parse the line " + line + " as an integer", false);
-			return 0;
-		}
-		catch (Exception e)
-		{
-			return 0;  // No file found, just return 0
+			return null;
+		} catch (Exception e) {
+			return null;  // No file found, just return 0
 		}
 	}
 	
-	private void updateBalance(int value)
+	private void updateBalance(double value)
 	{
-		int newBalance = getBalance() + value;
-		writeToFile(newBalance+"", mapping.get(DataFile.BALANCE));
+		BigDecimal newBalance = new BigDecimal(getBalance()); // Get your new balance
+
+		newBalance = newBalance.add(new BigDecimal(value));
+		
+		newBalance = newBalance.setScale(2, BigDecimal.ROUND_HALF_EVEN);
+		
+		writeToFile(newBalance.toString(), mapping.get(DataFile.BALANCE));
 	}
 	
 	private void writeToFile(String data, String fileName) {
