@@ -2,28 +2,21 @@ package com.example.personalfinancemanager;
 
 import org.apache.commons.lang3.StringUtils;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
+import android.app.Activity;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class MainActivity extends Activity {
-	/**
-	 * Default method
-	 */
+public class AddFundsActivity extends Activity {
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.deduct_funds);
+		setContentView(R.layout.add_funds);
 	}
 
-	/**
-	 * Default method
-	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -31,7 +24,7 @@ public class MainActivity extends Activity {
 		return true;
 	}
 
-	@Override
+	/*@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
 		//switch(item.getItemId()) {
@@ -48,7 +41,7 @@ public class MainActivity extends Activity {
 		//}
 		
 		return true;
-	}
+	}*/
 	
 	
 	public void keyPress(View view)
@@ -86,12 +79,12 @@ public class MainActivity extends Activity {
 	 * gets the text view then updates the balance via the
 	 * updateBalance method.  It then displays the new balance.
 	 */
-	public void deductFunds(View view)
+	public void addFunds(View view)
 	{
 		//TODO add addition to a CSV
 		TextView editText = (TextView) findViewById(R.id.display_value);
 		String message = editText.getText().toString();
-		CommonFunctions.deductFunds(message, view, this);
+		CommonFunctions.addFunds(message, view, this);
 		CommonFunctions.showBalance(view, this);
 	}
 }

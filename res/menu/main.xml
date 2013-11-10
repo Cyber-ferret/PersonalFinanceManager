@@ -1,9 +1,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:showAsAction="never"
-        android:title="@string/action_settings"/>
-
+       <item 
+        android:id="@+id/addFunds"
+        android:orderInCategory="1"
+        android:title="@string/menu_item1"/>
+    <item 
+        android:id="@+id/editIncome"
+        android:orderInCategory="2"
+        android:title="@string/menu_item2" />
+    <item 
+        android:id="@+id/editRecurringExpenses"
+        android:orderInCategory="3"
+        android:title="@string/menu_item3" />
+    <item 
+        android:id="@+id/settings"
+        android:orderInCategory="4"
+        android:title="@string/menu_item4" />
 </menu>

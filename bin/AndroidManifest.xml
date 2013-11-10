@@ -3,11 +3,11 @@
     package="com.example.personalfinancemanager"
     android:versionCode="1"
     android:versionName="1.0" >
-    
+
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="17" />
-    
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -30,8 +30,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.personalfinancemanager.MainActivity" />
         </activity>
-        
-        
+        <activity
+            android:name="com.example.personalfinancemanager.AddFundsActivity"
+            android:label="@string/title_activity_add_funds" >
+        </activity>
     </application>
 
 </manifest>
