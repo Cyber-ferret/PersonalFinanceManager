@@ -34,6 +34,10 @@
             android:name="com.example.personalfinancemanager.AddFundsActivity"
             android:label="@string/title_activity_add_funds" >
         </activity>
+        <activity
+            android:name="com.example.personalfinancemanager.RecurringExpensesActivity"
+            android:label="@string/title_activity_recurring_expenses" >
+        </activity>
     </application>
 
 </manifest>

@@ -8,23 +8,25 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import com.example.personalfinancemanager.RecurringExpense.timePeriod;
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.view.View;
 
 public class CommonFunctions {
+	
 	private static enum DataFile
 	{
-		BALANCE, SPENDING_BREAKDOWN, SETTINGS, SPENDING_AREAS
+		BALANCE, RECURRING_EXPENSES, EXPENSES
 	}
 	
 	private static HashMap<DataFile, String> mapping = new HashMap<DataFile, String>(){
 		private static final long serialVersionUID = 1L;
 		{
 			put(DataFile.BALANCE, "Balance.txt");
-			put(DataFile.SPENDING_BREAKDOWN, "SpendingBreakdown.txt");
-			put(DataFile.SETTINGS, "Settings.txt");
-			put(DataFile.SPENDING_AREAS, "SpendingAreas.txt");
+			put(DataFile.RECURRING_EXPENSES, "RecurringExpenses.txt");
+			put(DataFile.EXPENSES, "Expenses.txt");
 		}};
 	
 	/**
@@ -144,6 +146,11 @@ public class CommonFunctions {
 		writeToFile(newBalance.toString(), mapping.get(DataFile.BALANCE), context);
 	}
 	
+	public static void addRecurringExpense(String name, String value, timePeriod occurance)
+	{
+		
+	}
+	
 	private static void writeToFile(String data, String fileName, Context context) {
 	    try {
 	    	FileOutputStream fos = context.openFileOutput(fileName, Context.MODE_PRIVATE);
@@ -153,5 +160,23 @@ public class CommonFunctions {
 	    catch (IOException e) {
 	    	//raiseFailure("There was an IO error while trying to write to output file " + fileName, false);
 	    } 
+	}
+	
+	public static String[] parseCSVLine(String line)
+	{
+		String[] values = line.split("\",\"");
+		int size = values.length;
+		
+		if(values[0].startsWith("\""))
+		{
+			values[0] = values[0].substring(1);
+		}
+		if(values[size-1].endsWith("\""))
+		{
+			int stringSize = values[size-1].length();
+			values[size-1] = values[size-1].substring(0, stringSize-1);
+		}
+		
+		return values;
 	}
 }

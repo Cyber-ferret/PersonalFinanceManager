@@ -30,5 +30,8 @@
     <string name="title_activity_add_funds">AddFundsActivity</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_recurring_expenses">RecurringExpensesActivity</string>
+    
+    <string name="activity_display_message">How much money should be added?</string>
 
 </resources>
