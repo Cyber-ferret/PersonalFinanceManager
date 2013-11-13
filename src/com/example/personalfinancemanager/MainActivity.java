@@ -1,5 +1,7 @@
 package com.example.personalfinancemanager;
 
+import nonActivities.CommonFunctions;
+
 import org.apache.commons.lang3.StringUtils;
 
 import android.app.Activity;
@@ -34,18 +36,20 @@ public class MainActivity extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
-		//switch(item.getItemId()) {
-		//case R.string.menu_item1:
-			Intent intent = new Intent(this, AddFundsActivity.class);
-			startActivity(intent);
-		//	break;
-		//case R.string.menu_item2:
-		//	break;
+		switch(item.getItemId()) {
+		case R.id.addFunds:
+			Intent i1 = new Intent(this, AddFundsActivity.class);
+			startActivity(i1);
+			break;
+		case R.id.editRecurringExpenses:
+			Intent i2 = new Intent(this, RecurringExpensesActivity.class);
+			startActivity(i2);
+			break;
 		//case R.string.menu_item3:
 		//	break;
 		//case R.string.menu_item4:
 		//	break;
-		//}
+		}
 		
 		return true;
 	}

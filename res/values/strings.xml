@@ -2,10 +2,10 @@
 <resources>
 
     <string name="show_balance">Show Balance</string>
-    <string name="menu_item1">Add Funds</string>
-    <string name="menu_item2">Edit Income</string>
-    <string name="menu_item3">Edit Recurring Expenses</string>
-    <string name="menu_item4">Settings</string>
+    <string name="add_funds_option">Add Funds</string>
+    <string name="edit_income_option">Edit Income</string>
+    <string name="edit_recurring_expenses_option">Edit Recurring Expenses</string>
+    <string name="edit_settings_option">Settings</string>
     <string name="app_name">Finance Manager</string>
     <string name="title_activity_display_message">Jee boo</string>
     <string name="app_explanation">Instructions

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_root"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:padding="10dp" >
+
+    <EditText
+        android:id="@+id/name_input"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" 
+        android:hint="Name this expense." />
+
+    <EditText
+        android:id="@+id/cost_input"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="What does it cost?"
+        android:inputType="number" />
+        
+    <Spinner
+    android:id="@+id/occurance_input"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" />
+    
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Add" 
+        android:onClick="addNewExpense"/>
+ 
+</LinearLayout>

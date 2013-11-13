@@ -3,17 +3,17 @@
        <item 
         android:id="@+id/addFunds"
         android:orderInCategory="1"
-        android:title="@string/menu_item1"/>
+        android:title="@string/add_funds_option"/>
     <item 
         android:id="@+id/editIncome"
         android:orderInCategory="2"
-        android:title="@string/menu_item2" />
+        android:title="@string/edit_income_option" />
     <item 
         android:id="@+id/editRecurringExpenses"
         android:orderInCategory="3"
-        android:title="@string/menu_item3" />
+        android:title="@string/edit_recurring_expenses_option" />
     <item 
         android:id="@+id/settings"
         android:orderInCategory="4"
-        android:title="@string/menu_item4" />
+        android:title="@string/edit_settings_option" />
 </menu>

@@ -1,5 +1,7 @@
 package com.example.personalfinancemanager;
 
+import nonActivities.CommonFunctions;
+
 import org.apache.commons.lang3.StringUtils;
 
 import android.os.Bundle;
