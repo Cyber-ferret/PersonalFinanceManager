@@ -11,10 +11,23 @@ import android.content.Context;
 import android.widget.Spinner;
 
 public class RecurringExpense {
+	public static String RECURRING_EXPENSES = "RecurringExpenses.txt";
 	private static final int NUM_FIELDS = 3;  // Make sure this matches the number of fields below
 	String name; 			// 1
 	BigDecimal value;		// 2
 	timePeriod occurance;	// 3
+	
+	public String getName() {
+		return name;
+	}
+
+	public BigDecimal getValue() {
+		return value;
+	}
+
+	public timePeriod getOccurance() {
+		return occurance;
+	}
 	
 	/**
 	 * Allowed time periods which expenses can be repeated
@@ -24,10 +37,24 @@ public class RecurringExpense {
 		DAILY, WEEKLY, BI_WEEKLY, MONTHLY, BI_ANNUALLY, ANNUALLY
 	}
 	
+	public static boolean alreadyExists(String name, Context c)
+	{
+		ArrayList<RecurringExpense> expenses = RecurringExpense.enumerateRecurringExpenses(CommonFunctions.mapping.get(CommonFunctions.DataFile.RECURRING_EXPENSES), c);
+		
+		for(int i=0; i<expenses.size(); i++)
+		{
+			if(expenses.get(i).getName().equalsIgnoreCase(name))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	/**
 	 * Used when creating objects from user input
 	 */
-	public RecurringExpense(String name, String value, Spinner occurance)
+	public RecurringExpense(String name, String value, Spinner occurance, Context c)
 	{
 		this.name = name;
 		this.occurance = getTimePeriod(occurance);
@@ -40,12 +67,19 @@ public class RecurringExpense {
 		{
 			CommonFunctions.raiseFailure("Could not interpret " + value + " as a dollar value", false, null);
 		}
+		
+		saveToFile(c);
+	}
+	
+	public void saveToFile(Context c)
+	{
+		CommonFunctions.writeToFile("\n" + this.getCSVString(), RECURRING_EXPENSES, c, true);
 	}
 	
 	/**
 	 * Used when creating objects from file
 	 */
-	public RecurringExpense(String name, String value, String occurance)
+	public RecurringExpense(String name, String value, String occurance, Context c)
 	{
 		this.name = name;
 		this.occurance = timePeriod.values()[Integer.parseInt(occurance)];  // TODO throws array index out of bounds and number format
@@ -58,9 +92,10 @@ public class RecurringExpense {
 		{
 			CommonFunctions.raiseFailure("Could not interpret " + value + " as a dollar value", false, null);
 		}
+		saveToFile(c);
 	}
 	
-	public static RecurringExpense[] enumerateRecurringExpenses(String fileName, Context context)
+	public static ArrayList<RecurringExpense> enumerateRecurringExpenses(String fileName, Context context)
 	{
 		ArrayList<RecurringExpense> returnVal = new ArrayList<RecurringExpense>();
 		
@@ -75,17 +110,15 @@ public class RecurringExpense {
 				if(list.length != NUM_FIELDS)
 				{
 					CommonFunctions.raiseFailure("Could not find the file " + fileName + " while trying to read recurring expenses", false, context);
-					return null;
 				}
 				
-				returnVal.add(new RecurringExpense(list[0], list[1], list[2]));
+				returnVal.add(new RecurringExpense(list[0], list[1], list[2], context));
 			}
 		} catch (FileNotFoundException e) {
-			CommonFunctions.raiseFailure("Could not find the file " + fileName + " while trying to read recurring expenses", false, context);
-			return null;
+			// Don't do anything
 		}
-		
-		return (RecurringExpense[]) returnVal.toArray();
+
+		return returnVal;
 	}
 	
 	public String getCSVString()

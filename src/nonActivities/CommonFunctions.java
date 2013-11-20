@@ -18,12 +18,12 @@ import android.view.View;
 
 public class CommonFunctions {
 	
-	private static enum DataFile
+	public static enum DataFile
 	{
 		BALANCE, RECURRING_EXPENSES, EXPENSES
 	}
 	
-	private static HashMap<DataFile, String> mapping = new HashMap<DataFile, String>(){
+	public static HashMap<DataFile, String> mapping = new HashMap<DataFile, String>(){
 		private static final long serialVersionUID = 1L;
 		{
 			put(DataFile.BALANCE, "Balance.txt");
@@ -66,7 +66,7 @@ public class CommonFunctions {
 		}
 		catch (NumberFormatException e)
 		{
-			//TODO show message
+			raiseFailure("Could not interpret " +  message + " as a dollar amount.", false, context);
 			return false;
 		}
 	}
@@ -101,10 +101,6 @@ public class CommonFunctions {
 	 * Called when the user clicks the Show Balance button 
 	 */
 	public static void showBalance(View view, Context context) {
-		//Intent intent = new Intent(this, DisplayMessageActivity.class);
-		//intent.putExtra("", "Your balance is currently " + EXTRA_MESSAGE);
-		//startActivity(intent);
-		
 		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
  
 		// set title
@@ -145,22 +141,27 @@ public class CommonFunctions {
 		
 		newBalance = newBalance.setScale(2, BigDecimal.ROUND_HALF_EVEN);
 		
-		writeToFile(newBalance.toString(), mapping.get(DataFile.BALANCE), context);
+		writeToFile(newBalance.toString(), mapping.get(DataFile.BALANCE), context, false);
 	}
 	
-	public static void addRecurringExpense(String name, String value, timePeriod occurance)
-	{
-		
-	}
-	
-	private static void writeToFile(String data, String fileName, Context context) {
+	public static void writeToFile(String data, String fileName, Context context, boolean append) {
 	    try {
-	    	FileOutputStream fos = context.openFileOutput(fileName, Context.MODE_PRIVATE);
+	    	FileOutputStream fos;
+	    	if(append && context.getFileStreamPath(fileName).exists())
+	    	{
+	    		// Open for appending to file
+	    		fos = context.openFileOutput(fileName, Context.MODE_PRIVATE | Context.MODE_APPEND);
+	    	} 
+	    	else
+	    	{
+	    		// Write new or write over
+	    		fos = context.openFileOutput(fileName, Context.MODE_PRIVATE);
+	    	}
 	    	fos.write(data.getBytes());
 	    	fos.close();
 	    }
 	    catch (IOException e) {
-	    	//raiseFailure("There was an IO error while trying to write to output file " + fileName, false);
+	    	raiseFailure("There was an IO error while trying to write to output file " + fileName, false, context);
 	    } 
 	}
 	

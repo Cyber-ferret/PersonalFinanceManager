@@ -1,26 +1,22 @@
 package com.example.personalfinancemanager;
 
-import nonActivities.Expense;
+import org.w3c.dom.Comment;
+
+import nonActivities.CommonFunctions;
 import nonActivities.RecurringExpense;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
-import android.view.Window;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -32,6 +28,26 @@ public class RecurringExpensesActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_recurring_expenses);
+		
+		tables.Table_RecurringExpenses  t = new tables.Table_RecurringExpenses(this);
+		Cursor c = t.getRows();
+		
+		c.moveToFirst();
+		while (!c.isAfterLast()) {
+			String name = "name";
+			//get the name
+			name = c.getString(1);
+
+		    c.moveToNext();
+		    this.addButton(name);
+		}
+		
+		//String file = CommonFunctions.mapping.get(CommonFunctions.DataFile.RECURRING_EXPENSES);
+		//ArrayList<RecurringExpense> expenses = RecurringExpense.enumerateRecurringExpenses(file, context);
+		//for(int i=0; i<expenses.size(); i++)
+		//{
+		//	addButton(expenses.get(i).getName());
+		//}
 	}
 
 	@Override
@@ -43,7 +59,7 @@ public class RecurringExpensesActivity extends Activity {
 	
 	TextView nameInput;
 	TextView costInput;
-	Spinner occuranceInput;
+	Spinner occurrenceInput;
 	Dialog newRecurringPrompt;
 	public void addRecurringExpense(View view)
 	{
@@ -56,7 +72,7 @@ public class RecurringExpensesActivity extends Activity {
 	    
 	    nameInput = (TextView) view.findViewById(R.id.name_input);
 	    costInput = (TextView) view.findViewById(R.id.cost_input);
-	    occuranceInput = (Spinner) view.findViewById(R.id.occurance_input);
+	    occurrenceInput = (Spinner) view.findViewById(R.id.occurance_input);
 	    
 	    newRecurringPrompt = new Dialog(mTheme);
 	    populateOccuranceSpinner(R.id.occurance_input, view);
@@ -82,20 +98,46 @@ public class RecurringExpensesActivity extends Activity {
 	
 	public void addNewExpense(View view)
 	{
+		newRecurringPrompt.dismiss();  // Close our dialog box
+		
 		//TODO bug if name contains the substring "," (from CSV delimiter)
 	    String name = nameInput.getText().toString();
 	    String cost = costInput.getText().toString();
-	    String occurrence = occuranceInput.getSelectedItem().toString();
+	    String occurrence = occurrenceInput.getSelectedItem().toString();
 	    
-	    //TODO dynamically add new buttons
-	    LinearLayout r = (LinearLayout) findViewById(R.id.add_recurring_expense_linearlayout);
+	    if(name.trim().length() <= 0) {
+	    	CommonFunctions.raiseFailure("Your name field was empty.  Cannot add", false, this);
+	    	return;
+	    } else if(cost.trim().length() <= 0) {
+	    	CommonFunctions.raiseFailure("Your cost field was empty.  Cannot add", false, this);
+	    	return;
+	    } else if(occurrence.trim().length() <= 0) {
+	    	CommonFunctions.raiseFailure("Your occurrence field was empty.  Cannot add", false, this);
+	    	return;  // This one should never happen
+	    }
+	    //TODO make sure it doesn't already have that name
+	    
+	    //TODO add a hook to an edit function
+	    //TODO add Recurring expense and write it to file
+	    addButton(name);
+	    
+	    
+	    // Used to be used for CSV
+	    //RecurringExpense e = new RecurringExpense(name, cost, occurrenceInput, this); // This saves it to file
+	    
+	    
+	    //TODO verify number inputs
+	    tables.Table_RecurringExpenses  t = new tables.Table_RecurringExpenses(this);
+	    t.addRecurringExpense(name, Double.parseDouble(cost), occurrenceInput.getSelectedItemPosition());
+	}
+	
+	private void addButton(String name)
+	{
+		LinearLayout r = (LinearLayout) findViewById(R.id.add_recurring_expense_linearlayout);
 	    r.setOrientation(LinearLayout.VERTICAL);
 	    Button newButton = new Button(this);
 	    newButton.setText(name);
 	    newButton.setWidth(LayoutParams.MATCH_PARENT);
 	    r.addView(newButton);
-	    
-	    newRecurringPrompt.dismiss();  // Close our dialog box
-	    //RecurringExpense e = new RecurringExpense(nameInput.getText().toString(), costInput.getText().toString(), occuranceInput);
 	}
 }
