@@ -6,6 +6,12 @@
     android:layout_gravity="center"
     android:columnCount="3"
     android:orientation="horizontal" >
+    <EditText android:id="@+id/funding_description"
+        android:layout_columnSpan="3"
+        android:layout_gravity="center"
+        android:textSize="24sp"
+        android:layout_height="wrap_content"
+        android:hint="Description" />
     <TextView 
         android:id="@+id/display_value"
         android:layout_columnSpan="3"

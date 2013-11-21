@@ -1,13 +1,13 @@
 package com.example.personalfinancemanager;
 
-import org.w3c.dom.Comment;
+import java.util.ArrayList;
+
+import tables.Table_RecurringExpenses;
 
 import nonActivities.CommonFunctions;
-import nonActivities.RecurringExpense;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
@@ -29,25 +29,14 @@ public class RecurringExpensesActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_recurring_expenses);
 		
-		tables.Table_RecurringExpenses  t = new tables.Table_RecurringExpenses(this);
-		Cursor c = t.getRows();
-		
-		c.moveToFirst();
-		while (!c.isAfterLast()) {
-			String name = "name";
-			//get the name
-			name = c.getString(1);
+		Table_RecurringExpenses  t = new Table_RecurringExpenses(this);
 
-		    c.moveToNext();
-		    this.addButton(name);
-		}
+		ArrayList<Table_RecurringExpenses.Row> rows = t.getRows();
 		
-		//String file = CommonFunctions.mapping.get(CommonFunctions.DataFile.RECURRING_EXPENSES);
-		//ArrayList<RecurringExpense> expenses = RecurringExpense.enumerateRecurringExpenses(file, context);
-		//for(int i=0; i<expenses.size(); i++)
-		//{
-		//	addButton(expenses.get(i).getName());
-		//}
+		for(int i=0; i<rows.size(); i++)
+		{
+			this.addButton(rows.get(i).name);
+		}
 	}
 
 	@Override
@@ -100,7 +89,6 @@ public class RecurringExpensesActivity extends Activity {
 	{
 		newRecurringPrompt.dismiss();  // Close our dialog box
 		
-		//TODO bug if name contains the substring "," (from CSV delimiter)
 	    String name = nameInput.getText().toString();
 	    String cost = costInput.getText().toString();
 	    String occurrence = occurrenceInput.getSelectedItem().toString();
@@ -117,18 +105,14 @@ public class RecurringExpensesActivity extends Activity {
 	    }
 	    //TODO make sure it doesn't already have that name
 	    
-	    //TODO add a hook to an edit function
+	    //TODO add a hook to an edit function to edit the recurring expense
 	    //TODO add Recurring expense and write it to file
+	    //TODO verify number inputs
+	    
 	    addButton(name);
 	    
-	    
-	    // Used to be used for CSV
-	    //RecurringExpense e = new RecurringExpense(name, cost, occurrenceInput, this); // This saves it to file
-	    
-	    
-	    //TODO verify number inputs
 	    tables.Table_RecurringExpenses  t = new tables.Table_RecurringExpenses(this);
-	    t.addRecurringExpense(name, Double.parseDouble(cost), occurrenceInput.getSelectedItemPosition());
+	    t.addNew(name, Double.parseDouble(cost), occurrenceInput.getSelectedItemPosition());
 	}
 	
 	private void addButton(String name)

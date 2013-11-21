@@ -5,10 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.HashMap;
 import java.util.Scanner;
-
-import nonActivities.RecurringExpense.timePeriod;
 
 
 
@@ -17,19 +14,8 @@ import android.content.Context;
 import android.view.View;
 
 public class CommonFunctions {
-	
-	public static enum DataFile
-	{
-		BALANCE, RECURRING_EXPENSES, EXPENSES
-	}
-	
-	public static HashMap<DataFile, String> mapping = new HashMap<DataFile, String>(){
-		private static final long serialVersionUID = 1L;
-		{
-			put(DataFile.BALANCE, "Balance.txt");
-			put(DataFile.RECURRING_EXPENSES, "RecurringExpenses.txt");
-			put(DataFile.EXPENSES, "Expenses.txt");
-		}};
+	public static String BALANCE_FILE_LOCATION = "Balance.txt";
+	public static String INCOME_FILE_LOCATION = "Income.txt";  //TODO add income
 	
 	/**
 	 * gets the text field then updates the balance via the
@@ -37,7 +23,6 @@ public class CommonFunctions {
 	 */
 	public static boolean deductFunds(String message, View view, Context context)
 	{
-		//TODO add charge to a CSV
 		try 
 		{
 			double value = Double.parseDouble(message);
@@ -119,10 +104,9 @@ public class CommonFunctions {
 	
 	public static String getBalance(Context context)
 	{
-		String fileName = mapping.get(DataFile.BALANCE);
 		String line = "";
 		try {
-			FileInputStream s = context.openFileInput(fileName);
+			FileInputStream s = context.openFileInput(BALANCE_FILE_LOCATION);
 			line = (new Scanner(s)).nextLine();
 			return line;
 		} catch (FileNotFoundException e) {
@@ -141,7 +125,7 @@ public class CommonFunctions {
 		
 		newBalance = newBalance.setScale(2, BigDecimal.ROUND_HALF_EVEN);
 		
-		writeToFile(newBalance.toString(), mapping.get(DataFile.BALANCE), context, false);
+		writeToFile(newBalance.toString(), BALANCE_FILE_LOCATION, context, false);
 	}
 	
 	public static void writeToFile(String data, String fileName, Context context, boolean append) {
@@ -163,23 +147,5 @@ public class CommonFunctions {
 	    catch (IOException e) {
 	    	raiseFailure("There was an IO error while trying to write to output file " + fileName, false, context);
 	    } 
-	}
-	
-	public static String[] parseCSVLine(String line)
-	{
-		String[] values = line.split("\",\"");
-		int size = values.length;
-		
-		if(values[0].startsWith("\""))
-		{
-			values[0] = values[0].substring(1);
-		}
-		if(values[size-1].endsWith("\""))
-		{
-			int stringSize = values[size-1].length();
-			values[size-1] = values[size-1].substring(0, stringSize-1);
-		}
-		
-		return values;
 	}
 }
