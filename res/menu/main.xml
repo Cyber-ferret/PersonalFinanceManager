@@ -16,4 +16,8 @@
         android:id="@+id/settings"
         android:orderInCategory="4"
         android:title="@string/edit_settings_option" />
+    <item 
+        android:id="@+id/editCategories"
+        android:orderInCategory="4"
+        android:title="Manage Categories" />
 </menu>

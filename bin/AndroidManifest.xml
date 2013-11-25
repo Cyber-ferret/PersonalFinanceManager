@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.personalfinancemanager.MainActivity"
+            android:name="activities.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,18 +25,22 @@
         <activity
             android:name="com.example.personalfinancemanager.DisplayMessageActivity"
             android:label="@string/title_activity_display_message"
-            android:parentActivityName="com.example.personalfinancemanager.MainActivity" >
+            android:parentActivityName="activities.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.personalfinancemanager.MainActivity" />
         </activity>
         <activity
-            android:name="com.example.personalfinancemanager.AddFundsActivity"
+            android:name="activities.AddFundsActivity"
             android:label="@string/title_activity_add_funds" >
         </activity>
         <activity
-            android:name="com.example.personalfinancemanager.RecurringExpensesActivity"
+            android:name="activities.RecurringExpensesActivity"
             android:label="@string/title_activity_recurring_expenses" >
+        </activity>
+        <activity
+            android:name="activities.ManageExpenseCategoriesActivity"
+            android:label="@string/title_activity_manage_expense_categories" >
         </activity>
     </application>
 
