@@ -17,11 +17,5 @@
         android:layout_height="wrap_content"
         android:onClick="addNewCategory"
         android:text="Finished" />
-    
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Delete" 
-        android:onClick="deleteCategory"/>
  
 </LinearLayout>

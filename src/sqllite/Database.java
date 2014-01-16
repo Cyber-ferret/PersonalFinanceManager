@@ -20,9 +20,6 @@ public class Database extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         //db.execSQL(generateTableCreateString(ADDITIONAL_FUNDS_NAME, additionalFundsFields));
-    	// String one = generateTableCreateString(ExpenseCategories.TABLE_NAME, ExpenseCategories.fields);
-    	// String two = generateTableCreateString(Expenses.TABLE_NAME, Expenses.fields);
-    	// String three = generateTableCreateString(RecurringExpenses.TABLE_NAME, RecurringExpenses.fields);
     	db.execSQL(generateTableCreateString(ExpenseCategories.TABLE_NAME, ExpenseCategories.fields));
     	db.execSQL(generateTableCreateString(Expenses.TABLE_NAME, Expenses.fields));
     	db.execSQL(generateTableCreateString(RecurringExpenses.TABLE_NAME, RecurringExpenses.fields));
@@ -97,10 +94,9 @@ public class Database extends SQLiteOpenHelper {
 		
 		b.append("CREATE TABLE " + tableName + " (");
 		
-		
 		while(iterator.hasNext())
 		{
-			Map.Entry pairs = (Map.Entry)iterator.next();
+			Map.Entry<?,?> pairs = (Map.Entry<?,?>)iterator.next();
 			String ending = (iterator.hasNext()) ? ", " : ");" ;
 			b.append(pairs.getKey() + " " + pairs.getValue() + ending);
 		}

@@ -73,9 +73,10 @@ public class ManageExpenseCategoriesActivity extends Activity {
 	    ContextThemeWrapper mTheme = new ContextThemeWrapper(this,
 	            R.style.AppTheme);
 
-	    view = inflater.inflate(R.layout.category_prompt, null);
+	    view = inflater.inflate(R.layout.category_edit_prompt, null);
 	    
 	    nameInput = (TextView) view.findViewById(R.id.name_input);
+	    nameInput.setText(categoryBeingModified.getText());
 	    
 	    prompt = new Dialog(mTheme);
 	    prompt.getWindow().setTitle("Category Info");
@@ -93,7 +94,6 @@ public class ManageExpenseCategoriesActivity extends Activity {
 	    	CommonFunctions.raiseFailure("Your name field was empty.  Cannot add", false, this);
 	    	return;
 	    }
-	    //TODO make sure it doesn't already have that name
 	    
 	    Table_ExpenseCategories  t = new Table_ExpenseCategories(this);
 	    long newID = t.addNew(name);
@@ -114,6 +114,8 @@ public class ManageExpenseCategoriesActivity extends Activity {
 	    
 	    Table_ExpenseCategories  t = new Table_ExpenseCategories(this);
 	    t.update(categoryBeingModified.elementID, newName);
+	    
+	    categoryBeingModified.setText(newName);
 	}
 	
 	public void deleteCategory(View view)
@@ -122,6 +124,8 @@ public class ManageExpenseCategoriesActivity extends Activity {
 		
 		Table_ExpenseCategories  t = new Table_ExpenseCategories(this);
 	    t.delete(categoryBeingModified.elementID);
+	    
+	    categoryBeingModified.setVisibility(View.GONE);
 	}
 	
 	private void addButton(String name, long ID)
@@ -132,7 +136,7 @@ public class ManageExpenseCategoriesActivity extends Activity {
 	    newButton.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View view) {
-				modifyCategory(view);
+				showEditCategoryPrompt(view);
 			}
 	    });
 	    newButton.setText(name);

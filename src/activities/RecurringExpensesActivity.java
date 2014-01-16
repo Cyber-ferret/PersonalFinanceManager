@@ -15,6 +15,7 @@ import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -37,7 +38,7 @@ public class RecurringExpensesActivity extends Activity {
 		
 		for(int i=0; i<rows.size(); i++)
 		{
-			this.addButton(rows.get(i).name);
+			this.addButton(rows.get(i).name, rows.get(i).ID);
 		}
 	}
 
@@ -105,25 +106,91 @@ public class RecurringExpensesActivity extends Activity {
 	    	CommonFunctions.raiseFailure("Your occurrence field was empty.  Cannot add", false, this);
 	    	return;  // This one should never happen
 	    }
-	    //TODO make sure it doesn't already have that name
 	    
-	    //TODO add a hook to an edit function to edit the recurring expense
-	    //TODO add Recurring expense and write it to file
-	    //TODO verify number inputs
+	    Table_RecurringExpenses  t = new Table_RecurringExpenses(this);
+	    long newID = t.addNew(name, Double.parseDouble(cost), occurrenceInput.getSelectedItemPosition());
 	    
-	    addButton(name);
-	    
-	    sqllite.Table_RecurringExpenses  t = new sqllite.Table_RecurringExpenses(this);
-	    t.addNew(name, Double.parseDouble(cost), occurrenceInput.getSelectedItemPosition());
+	    addButton(name, newID);
 	}
 	
-	private void addButton(String name)
+	SpecificButton recurringExpenseBeingModified;
+	public void showEditRecurringExpensePrompt(View view)
+	{
+		recurringExpenseBeingModified = (SpecificButton) view;
+		
+		LayoutInflater inflater = (LayoutInflater) getBaseContext().getSystemService(
+	            LAYOUT_INFLATER_SERVICE);
+	    ContextThemeWrapper mTheme = new ContextThemeWrapper(this,
+	            R.style.AppTheme);
+
+	    view = inflater.inflate(R.layout.reucrring_expense_edit_prompt, null);
+	    
+	    nameInput = (TextView) view.findViewById(R.id.name_input);
+	    nameInput.setText(recurringExpenseBeingModified.getText());
+	    
+	    newRecurringPrompt = new Dialog(mTheme);
+	    newRecurringPrompt.getWindow().setTitle("Category Info");
+	    newRecurringPrompt.setContentView(view);
+	    newRecurringPrompt.show();
+	}
+	
+	public void modifyRecurringExpense(View view)
+	{
+		newRecurringPrompt.dismiss();  // Close our dialog box
+		
+	    String newName = nameInput.getText().toString();
+	    String newCost = costInput.getText().toString();
+	    String newOccurrence = occurrenceInput.getSelectedItem().toString();
+	    
+	    if(newName.trim().length() <= 0) {
+	    	CommonFunctions.raiseFailure("Your name field was empty.  Cannot add", false, this);
+	    	return;
+	    } else if(newName.trim().length() <= 0) {
+	    	CommonFunctions.raiseFailure("Your cost field was empty.  Cannot add", false, this);
+	    	return;
+	    } else if(newOccurrence.trim().length() <= 0) {
+	    	CommonFunctions.raiseFailure("Your occurrence field was empty.  Cannot add", false, this);
+	    	return;  // This one should never happen
+	    }
+	    
+	    Table_RecurringExpenses  t = new Table_RecurringExpenses(this);
+	    t.update(recurringExpenseBeingModified.elementID, newName, newCost, newOccurrence);
+	    
+	    recurringExpenseBeingModified.setText(newName);
+	}
+	
+	public void deleteCategory(View view)
+	{
+		newRecurringPrompt.dismiss();  // Close our dialog box
+		
+		Table_RecurringExpenses  t = new Table_RecurringExpenses(this);
+	    t.delete(recurringExpenseBeingModified.elementID);
+	    
+	    recurringExpenseBeingModified.setVisibility(View.GONE);
+	}
+	
+	private void addButton(String name, long ID)
 	{
 		LinearLayout r = (LinearLayout) findViewById(R.id.add_recurring_expense_linearlayout);
 	    r.setOrientation(LinearLayout.VERTICAL);
-	    Button newButton = new Button(this);
+	    SpecificButton newButton = new SpecificButton(this, ID);
+	    newButton.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View view) {
+				showEditRecurringExpensePrompt(view);
+			}
+	    });
 	    newButton.setText(name);
 	    newButton.setWidth(LayoutParams.MATCH_PARENT);
 	    r.addView(newButton);
+	}
+	
+	public class SpecificButton extends Button
+	{
+		public long elementID;
+		public SpecificButton(Context context, long ID) {
+			super(context);
+			this.elementID = ID;
+		}
 	}
 }

@@ -15,7 +15,7 @@ public class Table_RecurringExpenses {
 		storedContext = c;
 	}
 	
-	public void addNew(String name, double cost, int occurrence)
+	public long addNew(String name, double cost, int occurrence)
 	{
 		ContentValues values = new ContentValues();
 		SQLiteDatabase database = new Database(storedContext).getWritableDatabase();
@@ -24,7 +24,7 @@ public class Table_RecurringExpenses {
 	    values.put(Database.RecurringExpenses.COST_FIELD, cost);
 	    values.put(Database.RecurringExpenses.OCCURRENCE_FIELD, occurrence);
 	    
-	    database.insert(Database.RecurringExpenses.TABLE_NAME, null, values);
+	    return database.insert(Database.RecurringExpenses.TABLE_NAME, null, values);
 	}
 	
 	public ArrayList<Row> getRows()
@@ -42,7 +42,14 @@ public class Table_RecurringExpenses {
 			Row row = new Row();
 			row.ID = c.getInt(c.getColumnIndex(Database.RecurringExpenses.ID_FIELD));
 			row.name = c.getString(c.getColumnIndex(Database.RecurringExpenses.NAME_FIELD));
-			row.cost = c.getDouble(c.getColumnIndex(Database.RecurringExpenses.COST_FIELD));
+			try
+			{
+				row.cost = c.getDouble(c.getColumnIndex(Database.RecurringExpenses.COST_FIELD));
+			}
+			catch (Exception e)
+			{
+				System.out.println(e.toString());
+			}
 			row.occurrence = c.getInt(c.getColumnIndex(Database.RecurringExpenses.OCCURRENCE_FIELD));
 			
 			rows.add(row);
@@ -62,6 +69,24 @@ public class Table_RecurringExpenses {
 		public String name;
 		public double cost;
 		public int occurrence;
+	}
+
+	public void update(long ID, String newName, String newCost, String newOccurrence) {
+		ContentValues values = new ContentValues();
+		SQLiteDatabase database = new Database(storedContext).getWritableDatabase();
+		
+		String whereClause = Database.ExpenseCategories.ID_FIELD + "=" + ID;
+	    values.put(Database.ExpenseCategories.NAME_FIELD, newName);
+	    values.put(Database.RecurringExpenses.COST_FIELD, newCost);
+	    values.put(Database.RecurringExpenses.OCCURRENCE_FIELD, newOccurrence);
+	    
+		database.update(Database.ExpenseCategories.TABLE_NAME, values, whereClause, null);
+	}
+
+	public void delete(long ID) {
+		SQLiteDatabase database = new Database(storedContext).getWritableDatabase();
+		String whereClause = Database.ExpenseCategories.ID_FIELD + "=" + ID;
+		database.delete(Database.ExpenseCategories.TABLE_NAME, whereClause, null);
 	}
 	
 	
