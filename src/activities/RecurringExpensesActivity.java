@@ -94,7 +94,7 @@ public class RecurringExpensesActivity extends Activity {
 		
 	    String name = nameInput.getText().toString();
 	    String cost = costInput.getText().toString();
-	    String occurrence = occurrenceInput.getSelectedItem().toString();
+	    int occurrence = occurrenceInput.getSelectedItemPosition();
 	    
 	    if(name.trim().length() <= 0) {
 	    	CommonFunctions.raiseFailure("Your name field was empty.  Cannot add", false, this);
@@ -102,13 +102,10 @@ public class RecurringExpensesActivity extends Activity {
 	    } else if(cost.trim().length() <= 0) {
 	    	CommonFunctions.raiseFailure("Your cost field was empty.  Cannot add", false, this);
 	    	return;
-	    } else if(occurrence.trim().length() <= 0) {
-	    	CommonFunctions.raiseFailure("Your occurrence field was empty.  Cannot add", false, this);
-	    	return;  // This one should never happen
-	    }
+	    } 
 	    
 	    Table_RecurringExpenses  t = new Table_RecurringExpenses(this);
-	    long newID = t.addNew(name, Double.parseDouble(cost), occurrenceInput.getSelectedItemPosition());
+	    long newID = t.addNew(name, Double.parseDouble(cost), occurrence);
 	    
 	    addButton(name, newID);
 	}
@@ -126,9 +123,17 @@ public class RecurringExpensesActivity extends Activity {
 	    view = inflater.inflate(R.layout.reucrring_expense_edit_prompt, null);
 	    
 	    nameInput = (TextView) view.findViewById(R.id.name_input);
-	    nameInput.setText(recurringExpenseBeingModified.getText());
+	    costInput = (TextView) view.findViewById(R.id.cost_input);
+	    occurrenceInput = (Spinner) view.findViewById(R.id.occurance_input);
+	    
+	    Table_RecurringExpenses t = new Table_RecurringExpenses(this);
+	    Table_RecurringExpenses.Row row = t.getSingle(recurringExpenseBeingModified.elementID);
+	    nameInput.setText(row.name);
+	    costInput.setText(row.cost+"");
 	    
 	    newRecurringPrompt = new Dialog(mTheme);
+	    populateOccuranceSpinner(R.id.occurance_input, view);
+	    occurrenceInput.setSelection(row.occurrence);
 	    newRecurringPrompt.getWindow().setTitle("Category Info");
 	    newRecurringPrompt.setContentView(view);
 	    newRecurringPrompt.show();
@@ -140,7 +145,7 @@ public class RecurringExpensesActivity extends Activity {
 		
 	    String newName = nameInput.getText().toString();
 	    String newCost = costInput.getText().toString();
-	    String newOccurrence = occurrenceInput.getSelectedItem().toString();
+	    int newOccurrence = occurrenceInput.getSelectedItemPosition();
 	    
 	    if(newName.trim().length() <= 0) {
 	    	CommonFunctions.raiseFailure("Your name field was empty.  Cannot add", false, this);
@@ -148,9 +153,6 @@ public class RecurringExpensesActivity extends Activity {
 	    } else if(newName.trim().length() <= 0) {
 	    	CommonFunctions.raiseFailure("Your cost field was empty.  Cannot add", false, this);
 	    	return;
-	    } else if(newOccurrence.trim().length() <= 0) {
-	    	CommonFunctions.raiseFailure("Your occurrence field was empty.  Cannot add", false, this);
-	    	return;  // This one should never happen
 	    }
 	    
 	    Table_RecurringExpenses  t = new Table_RecurringExpenses(this);
@@ -159,7 +161,7 @@ public class RecurringExpensesActivity extends Activity {
 	    recurringExpenseBeingModified.setText(newName);
 	}
 	
-	public void deleteCategory(View view)
+	public void deleteRecurringExpense(View view)
 	{
 		newRecurringPrompt.dismiss();  // Close our dialog box
 		

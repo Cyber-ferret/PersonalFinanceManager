@@ -15,18 +15,6 @@ public class Table_RecurringExpenses {
 		storedContext = c;
 	}
 	
-	public long addNew(String name, double cost, int occurrence)
-	{
-		ContentValues values = new ContentValues();
-		SQLiteDatabase database = new Database(storedContext).getWritableDatabase();
-		
-	    values.put(Database.RecurringExpenses.NAME_FIELD, name);
-	    values.put(Database.RecurringExpenses.COST_FIELD, cost);
-	    values.put(Database.RecurringExpenses.OCCURRENCE_FIELD, occurrence);
-	    
-	    return database.insert(Database.RecurringExpenses.TABLE_NAME, null, values);
-	}
-	
 	public ArrayList<Row> getRows()
 	{
 		ArrayList<Row> rows = new ArrayList<Row>();
@@ -35,7 +23,7 @@ public class Table_RecurringExpenses {
 
 		Database db = new Database(storedContext);
 
-		Cursor c = db.query(Database.ExpenseCategories.TABLE_NAME, columns);
+		Cursor c = db.query(Database.RecurringExpenses.TABLE_NAME, columns);
 
 	    c.moveToFirst();
 		while (!c.isAfterLast()) {
@@ -70,72 +58,45 @@ public class Table_RecurringExpenses {
 		public double cost;
 		public int occurrence;
 	}
-
-	public void update(long ID, String newName, String newCost, String newOccurrence) {
+	
+	public long addNew(String name, double cost, int occurrence)
+	{
 		ContentValues values = new ContentValues();
 		SQLiteDatabase database = new Database(storedContext).getWritableDatabase();
 		
-		String whereClause = Database.ExpenseCategories.ID_FIELD + "=" + ID;
-	    values.put(Database.ExpenseCategories.NAME_FIELD, newName);
+	    values.put(Database.RecurringExpenses.NAME_FIELD, name);
+	    values.put(Database.RecurringExpenses.COST_FIELD, cost);
+	    values.put(Database.RecurringExpenses.OCCURRENCE_FIELD, occurrence);
+	    
+	    return database.insert(Database.RecurringExpenses.TABLE_NAME, null, values);
+	}
+
+	public void update(long ID, String newName, String newCost, int newOccurrence) {
+		ContentValues values = new ContentValues();
+		SQLiteDatabase database = new Database(storedContext).getWritableDatabase();
+		
+		String whereClause = Database.RecurringExpenses.ID_FIELD + "=" + ID;
+	    values.put(Database.RecurringExpenses.NAME_FIELD, newName);
 	    values.put(Database.RecurringExpenses.COST_FIELD, newCost);
 	    values.put(Database.RecurringExpenses.OCCURRENCE_FIELD, newOccurrence);
 	    
-		database.update(Database.ExpenseCategories.TABLE_NAME, values, whereClause, null);
+		database.update(Database.RecurringExpenses.TABLE_NAME, values, whereClause, null);
 	}
 
 	public void delete(long ID) {
 		SQLiteDatabase database = new Database(storedContext).getWritableDatabase();
-		String whereClause = Database.ExpenseCategories.ID_FIELD + "=" + ID;
-		database.delete(Database.ExpenseCategories.TABLE_NAME, whereClause, null);
+		String whereClause = Database.RecurringExpenses.ID_FIELD + "=" + ID;
+		database.delete(Database.RecurringExpenses.TABLE_NAME, whereClause, null);
 	}
 	
-	
-	/*
-	 * 
-	 * 	
-	 * Allowed time periods which expenses can be repeated
-	 *
-	public static enum timePeriod
+	public Row getSingle(long ID)
 	{
-		DAILY, WEEKLY, BI_WEEKLY, MONTHLY, BI_ANNUALLY, ANNUALLY
-	}
-	
-	public static boolean alreadyExists(String name, Context c)
-	{
-		//TODO port
-	}
-	
-	/**
-	 * TODO make this better later....
-	 *
-	public static timePeriod getTimePeriod(Spinner s)
-	{
-		String selected = s.getSelectedItem().toString();
-		if(selected.equals("Daily"))
-		{
-			return timePeriod.DAILY;
-		}
-		else if(selected.equals("Weekly"))
-		{
-			return timePeriod.WEEKLY;
-		}
-		else if(selected.equals("Bi-Weekly"))
-		{
-			return timePeriod.BI_WEEKLY;
-		}
-		else if(selected.equals("Monthly"))
-		{
-			return timePeriod.MONTHLY;
-		}
-		else if(selected.equals("Bi-Annually"))
-		{
-			return timePeriod.BI_ANNUALLY;
-		}
-		else if(selected.equals("Annually"))
-		{
-			return timePeriod.ANNUALLY;
-		}
+		ArrayList<Row> rows = getRows();
+		
+		for (int i=0; i<rows.size(); i++)
+			if(rows.get(i).ID == ID)
+				return rows.get(i);
+		
 		return null;
 	}
-	 */
 }
