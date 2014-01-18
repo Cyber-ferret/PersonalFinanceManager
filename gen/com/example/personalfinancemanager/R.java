@@ -27,37 +27,40 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f09000f;
-        public static final int addFunds=0x7f09000a;
-        public static final int add_category_button=0x7f090001;
-        public static final int add_recurring_expense_button=0x7f090003;
-        public static final int add_recurring_expense_linearlayout=0x7f090002;
-        public static final int cost_input=0x7f090008;
-        public static final int display_value=0x7f090005;
-        public static final int editCategories=0x7f09000e;
-        public static final int editIncome=0x7f09000b;
-        public static final int editRecurringExpenses=0x7f09000c;
-        public static final int funding_description=0x7f090004;
-        public static final int layout_root=0x7f090006;
-        public static final int manage_categories_linearlayout=0x7f090000;
-        public static final int name_input=0x7f090007;
-        public static final int occurance_input=0x7f090009;
-        public static final int settings=0x7f09000d;
+        public static final int action_settings=0x7f09000b;
+        public static final int addFunds=0x7f09000c;
+        public static final int add_category_button=0x7f090003;
+        public static final int add_recurring_expense_button=0x7f090005;
+        public static final int add_recurring_expense_linearlayout=0x7f090004;
+        public static final int cost_input=0x7f090009;
+        public static final int display_value=0x7f090007;
+        public static final int editCategories=0x7f090010;
+        public static final int editIncome=0x7f09000d;
+        public static final int editRecurringExpenses=0x7f09000e;
+        public static final int funding_description=0x7f090006;
+        public static final int income=0x7f090001;
+        public static final int layout_root=0x7f090000;
+        public static final int manage_categories_linearlayout=0x7f090002;
+        public static final int name_input=0x7f090008;
+        public static final int occurance_input=0x7f09000a;
+        public static final int settings=0x7f09000f;
     }
     public static final class layout {
-        public static final int activity_manage_expense_categories=0x7f030000;
-        public static final int activity_recurring_expenses=0x7f030001;
-        public static final int add_funds=0x7f030002;
-        public static final int category_edit_prompt=0x7f030003;
-        public static final int category_prompt=0x7f030004;
-        public static final int deduct_funds=0x7f030005;
-        public static final int reucrring_expense_edit_prompt=0x7f030006;
-        public static final int reucrring_expense_prompt=0x7f030007;
+        public static final int activity_income=0x7f030000;
+        public static final int activity_manage_expense_categories=0x7f030001;
+        public static final int activity_recurring_expenses=0x7f030002;
+        public static final int add_funds=0x7f030003;
+        public static final int category_edit_prompt=0x7f030004;
+        public static final int category_prompt=0x7f030005;
+        public static final int deduct_funds=0x7f030006;
+        public static final int reucrring_expense_edit_prompt=0x7f030007;
+        public static final int reucrring_expense_prompt=0x7f030008;
     }
     public static final class menu {
-        public static final int main=0x7f080000;
-        public static final int manage_expense_categories=0x7f080001;
-        public static final int recurring_expenses=0x7f080002;
+        public static final int income=0x7f080000;
+        public static final int main=0x7f080001;
+        public static final int manage_expense_categories=0x7f080002;
+        public static final int recurring_expenses=0x7f080003;
     }
     public static final class string {
         public static final int action_settings=0x7f060009;
@@ -72,6 +75,7 @@ public final class R {
         public static final int show_balance=0x7f060000;
         public static final int title_activity_add_funds=0x7f060008;
         public static final int title_activity_display_message=0x7f060006;
+        public static final int title_activity_income=0x7f06000e;
         public static final int title_activity_manage_expense_categories=0x7f06000d;
         public static final int title_activity_recurring_expenses=0x7f06000b;
     }

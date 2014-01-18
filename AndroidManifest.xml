@@ -42,6 +42,10 @@
             android:name="activities.ManageExpenseCategoriesActivity"
             android:label="@string/title_activity_manage_expense_categories" >
         </activity>
+        <activity
+            android:name="activities.IncomeActivity"
+            android:label="@string/title_activity_income" >
+        </activity>
     </application>
 
 </manifest>

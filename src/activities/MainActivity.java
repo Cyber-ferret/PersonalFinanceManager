@@ -52,8 +52,10 @@ public class MainActivity extends Activity {
 			i = new Intent(this, ManageExpenseCategoriesActivity.class);
 			startActivity(i);
 			break;
-		//case R.string.menu_item3:
-		//	break;
+		case R.id.editIncome:
+			i = new Intent(this, IncomeActivity.class);
+			startActivity(i);
+			break;
 		//case R.string.menu_item4:
 		//	break;
 		}

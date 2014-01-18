@@ -33,5 +33,6 @@
     <string name="title_activity_recurring_expenses">RecurringExpensesActivity</string>
     <string name="activity_display_message">How much money should be added?</string>
     <string name="title_activity_manage_expense_categories">Manage Categories</string>
+    <string name="title_activity_income">IncomeActivity</string>
 
 </resources>
