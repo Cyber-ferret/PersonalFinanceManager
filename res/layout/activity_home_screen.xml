@@ -7,13 +7,39 @@
     android:orientation="vertical"
     android:padding="10dp" >
 
+    <TextView 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="24sp"
+        android:text="@string/balance_underline" />
+    
+    <TextView 
+        android:id="@+id/balance_display"
+		android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:text="" />
+    
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_weight="1" >
+    </View>
+    <!--android:background="@drawable/round_button" -->
     <Button
         android:id="@+id/add_expense"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Add Expense" 
+        android:text="I Spent Money" 
         android:onClick="openSelected"/>
         
+     <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_weight="1" >
+    </View>
      <Button
         android:id="@+id/add_funds"
         android:layout_width="fill_parent"
@@ -21,69 +47,40 @@
         android:text="Add Money" 
         android:onClick="openSelected"/>
 
+     <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_weight="1" >
+    </View>
      <Button
-        android:id="@+id/edit_income"
+        android:id="@+id/edit_information"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Edit My Income" 
-        android:onClick="openSelected"/>
-     
-    <Button
-        android:id="@+id/view_balance"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="View Balance" 
+        android:text="Edit Information" 
         android:onClick="openSelected"/>
     
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_weight="1" >
+    </View>
     <Button
-        android:id="@+id/view_expense_history"
+        android:id="@+id/statistics"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="View Expense History" 
-        android:onClick="openSelected"/>
-    
- <!--   TODO: add this in later
- 	 	<Button
-        android:id="@+id/view_bill_due_dates"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="View Bill Due Dates" 
-        android:onClick="openSelected"/>-->
-        
- <!--   TODO: add this in later
- 	 	<Button
-        android:id="@+id/view_spending_habits"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="View Spending Habits" 
-        android:onClick="openSelected"/>-->
-     
-     <Button
-        android:id="@+id/edit_recurring_expenses"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Edit Repeating Expenses" 
+        android:text="Stats" 
         android:onClick="openSelected"/>
      
-     <Button
-        android:id="@+id/edit_expense_categories"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Edit Expense Categories" 
-        android:onClick="openSelected"/>
-     
+     <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_weight="1" >
+    </View>
      <Button
         android:id="@+id/user_guide"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="How Do I Use This?" 
-        android:onClick="openSelected"/>
-     
-     <Button
-        android:id="@+id/settings"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Settings" 
+        android:text="User Guide" 
         android:onClick="openSelected"/>
     
 </LinearLayout>

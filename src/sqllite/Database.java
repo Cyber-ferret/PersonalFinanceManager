@@ -77,6 +77,9 @@ public class Database extends SQLiteOpenHelper {
 		public static final String NAME_FIELD = "Name";
 		public static final String COST_FIELD = "Cost";
 		public static final String OCCURRENCE_FIELD = "Occurrence";
+		public static final String DAY_DUE = "Day_Due";
+		public static final String MONTH_DUE = "Month_Due";
+		public static final String YEAR_DUE = "Year_Due";
 		
 		public static final HashMap<String, String> fields = new HashMap<String, String>()
 		{ private static final long serialVersionUID = 1L; {
@@ -84,6 +87,9 @@ public class Database extends SQLiteOpenHelper {
 			put(NAME_FIELD, "TEXT");
 			put(COST_FIELD, "REAL");
 			put(OCCURRENCE_FIELD, "INTEGER");
+			put(DAY_DUE, "INTEGER");
+			put(MONTH_DUE, "INTEGER");
+			put(YEAR_DUE, "INTEGER");
 		}};
 	}
 	

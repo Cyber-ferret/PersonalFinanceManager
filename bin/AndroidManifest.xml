@@ -54,6 +54,14 @@
             android:name="activities.UserGuide"
             android:label="@string/title_activity_user_guide" >
         </activity>
+        <activity
+            android:name="activities.InformationMenu"
+            android:label="@string/title_activity_information_menu" >
+        </activity>
+        <activity
+            android:name="activities.StatisticsMenu"
+            android:label="@string/title_activity_statistics_menu" >
+        </activity>
     </application>
 
 </manifest>

@@ -1,8 +1,6 @@
 package activities;
 
 import com.example.personalfinancemanager.R;
-import com.example.personalfinancemanager.R.layout;
-import com.example.personalfinancemanager.R.menu;
 
 import android.os.Bundle;
 import android.app.Activity;

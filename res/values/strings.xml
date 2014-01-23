@@ -8,6 +8,19 @@
     <string name="edit_settings_option">Settings</string>
     <string name="app_name">Finance Manager</string>
     <string name="title_activity_display_message">Jee boo</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_recurring_expenses">RecurringExpensesActivity</string>
+    <string name="activity_display_message">How much money should be added?</string>
+    <string name="title_activity_manage_expense_categories">Manage Categories</string>
+    <string name="title_activity_income">IncomeActivity</string>
+    <string name="title_activity_home_screen">HomeScreen</string>
+    <string name="title_activity_user_guide">UserGuide</string>
+    <string name="title_activity_information_menu">InformationMenu</string>
+    <string name="title_activity_statistics_menu">StatisticsMenu</string>
+    
+    
+    <string name="balance_underline"><u>Balance</u></string>
     <string name="example_use">Let\'s say you\'re salaried at $40,000 a year.  But your bi-weekly pay check is $1230.  Multiply it by 26 (number of bi-weeks in a year) and you make ~$32,000 after taxes.\n
 \n
 So an example would look like this.\n
@@ -20,15 +33,7 @@ EXPENSE CATEGORIES: Groceries, Gas, Eating Out, Clothes, Fun Purchases, Car Main
 So your \'bills\' (including savings) are $21,440 per year, leaving you with $10,560 for spending on your "Expense Categories", or about $30 per day.\n
 \n
 So if over the course of two weeks our imaginary person spends $80 on gas, $120 eating out, $80 on groceries, and buys a $30 gift for their S.O., their balance will be at $110 at the end of 2 weeks (It\'s a good idea to keep a buffer in case of something like a speeding ticket, but an emergency expense is also why it\'s VERY important to allocate money to savings).
-        </string>
+</string>
     <string name="title_activity_add_funds">AddFundsActivity</string>
-    <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="title_activity_recurring_expenses">RecurringExpensesActivity</string>
-    <string name="activity_display_message">How much money should be added?</string>
-    <string name="title_activity_manage_expense_categories">Manage Categories</string>
-    <string name="title_activity_income">IncomeActivity</string>
-    <string name="title_activity_home_screen">HomeScreen</string>
-    <string name="title_activity_user_guide">UserGuide</string>
 
 </resources>

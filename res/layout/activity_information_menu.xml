@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_root"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:padding="10dp" >
+    
+    <Button
+        android:id="@+id/edit_income"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Edit My Income" 
+        android:onClick="openSelected"/>
+
+     <Button
+        android:id="@+id/edit_recurring_expenses"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Edit Repeating Expenses" 
+        android:onClick="openSelected"/>
+     
+     <Button
+        android:id="@+id/edit_expense_categories"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Edit Expense Categories" 
+        android:onClick="openSelected"/>
+
+</LinearLayout>

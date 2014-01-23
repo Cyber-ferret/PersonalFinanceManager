@@ -1,6 +1,6 @@
 package activities;
 
-import nonActivities.CommonFunctions;
+import nonActivities.BalanceFunctions;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -79,10 +79,8 @@ public class ExpenseActivity extends Activity {
 	 */
 	public void deductFunds(View view)
 	{
-		//TODO add addition to a CSV
 		TextView editText = (TextView) findViewById(R.id.display_value);
 		String message = editText.getText().toString();
-		CommonFunctions.deductFunds(message, view, this);
-		CommonFunctions.showBalance(view, this);
+		BalanceFunctions.deductFunds(message, view, this);
 	}
 }

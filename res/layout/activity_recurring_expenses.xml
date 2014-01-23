@@ -10,47 +10,12 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".RecurringExpensesActivity" >
-
-    <!-- Line 1 ## Add Back in later ###
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Your starting balance is: " />
-    
-    <EditText
-        android:id="@+id/starting_balance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    -->
-    
-    <!-- Line 2
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Your paycheck is: " />
-    
-    <EditText
-        android:id="@+id/paycheck_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="value"/>
-    
-    <Spinner
-	    android:id="@+id/paycheck_occurance"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content" />
-    -->
-    
-    <!-- Line 3 The recurring expense button-->
     
     <Button
         android:id="@+id/add_recurring_expense_button"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:text="Add Recurring Expense" 
         android:onClick="addRecurringExpense"/>
-    
-    <!-- Line 4+... (recurring shit) -->
 
 </LinearLayout>

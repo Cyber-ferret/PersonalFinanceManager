@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import com.example.personalfinancemanager.R;
 
 import sqllite.Table_ExpenseCategories;
-import nonActivities.CommonFunctions;
+import nonActivities.BalanceFunctions;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.Dialog;
@@ -91,7 +91,7 @@ public class ManageExpenseCategoriesActivity extends Activity {
 	    String name = nameInput.getText().toString();
 	    
 	    if(name.trim().length() <= 0) {
-	    	CommonFunctions.raiseFailure("Your name field was empty.  Cannot add", false, this);
+	    	BalanceFunctions.raiseFailure("Your name field was empty.  Cannot add", false, this);
 	    	return;
 	    }
 	    
@@ -108,7 +108,7 @@ public class ManageExpenseCategoriesActivity extends Activity {
 	    String newName = nameInput.getText().toString();
 	    
 	    if(newName.trim().length() <= 0) {
-	    	CommonFunctions.raiseFailure("Your name field was empty.  Cannot add", false, this);
+	    	BalanceFunctions.raiseFailure("Your name field was empty.  Cannot add", false, this);
 	    	return;
 	    }
 	    

@@ -30,15 +30,11 @@ public class Table_RecurringExpenses {
 			Row row = new Row();
 			row.ID = c.getInt(c.getColumnIndex(Database.RecurringExpenses.ID_FIELD));
 			row.name = c.getString(c.getColumnIndex(Database.RecurringExpenses.NAME_FIELD));
-			try
-			{
-				row.cost = c.getDouble(c.getColumnIndex(Database.RecurringExpenses.COST_FIELD));
-			}
-			catch (Exception e)
-			{
-				System.out.println(e.toString());
-			}
+			row.cost = c.getDouble(c.getColumnIndex(Database.RecurringExpenses.COST_FIELD));
 			row.occurrence = c.getInt(c.getColumnIndex(Database.RecurringExpenses.OCCURRENCE_FIELD));
+			row.dayDue = c.getInt(c.getColumnIndex(Database.RecurringExpenses.DAY_DUE));
+			row.monthDue = c.getInt(c.getColumnIndex(Database.RecurringExpenses.MONTH_DUE));
+			row.yearDue = c.getInt(c.getColumnIndex(Database.RecurringExpenses.YEAR_DUE));
 			
 			rows.add(row);
 			
@@ -56,10 +52,13 @@ public class Table_RecurringExpenses {
 		public int ID;
 		public String name;
 		public double cost;
-		public int occurrence;
+		public int occurrence;	// Spinner Selection Position
+		public int dayDue; 		// Spinner Selection Position
+		public int monthDue;	// Spinner Selection Position
+		public int yearDue;		// Spinner Selection Position
 	}
 	
-	public long addNew(String name, double cost, int occurrence)
+	public long addNew(String name, double cost, int occurrence, int day, int month, int year)
 	{
 		ContentValues values = new ContentValues();
 		SQLiteDatabase database = new Database(storedContext).getWritableDatabase();
@@ -67,11 +66,14 @@ public class Table_RecurringExpenses {
 	    values.put(Database.RecurringExpenses.NAME_FIELD, name);
 	    values.put(Database.RecurringExpenses.COST_FIELD, cost);
 	    values.put(Database.RecurringExpenses.OCCURRENCE_FIELD, occurrence);
+	    values.put(Database.RecurringExpenses.DAY_DUE, day);
+	    values.put(Database.RecurringExpenses.MONTH_DUE, month);
+	    values.put(Database.RecurringExpenses.YEAR_DUE, year);
 	    
 	    return database.insert(Database.RecurringExpenses.TABLE_NAME, null, values);
 	}
 
-	public void update(long ID, String newName, String newCost, int newOccurrence) {
+	public void update(long ID, String newName, String newCost, int newOccurrence, int newDay, int newMonth, int newYear) {
 		ContentValues values = new ContentValues();
 		SQLiteDatabase database = new Database(storedContext).getWritableDatabase();
 		
@@ -79,6 +81,9 @@ public class Table_RecurringExpenses {
 	    values.put(Database.RecurringExpenses.NAME_FIELD, newName);
 	    values.put(Database.RecurringExpenses.COST_FIELD, newCost);
 	    values.put(Database.RecurringExpenses.OCCURRENCE_FIELD, newOccurrence);
+	    values.put(Database.RecurringExpenses.DAY_DUE, newDay);
+	    values.put(Database.RecurringExpenses.MONTH_DUE, newMonth);
+	    values.put(Database.RecurringExpenses.YEAR_DUE, newYear);
 	    
 		database.update(Database.RecurringExpenses.TABLE_NAME, values, whereClause, null);
 	}

@@ -6,7 +6,7 @@ import com.example.personalfinancemanager.R;
 
 import sqllite.Table_RecurringExpenses;
 
-import nonActivities.CommonFunctions;
+import nonActivities.BalanceFunctions;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
@@ -49,9 +49,8 @@ public class RecurringExpensesActivity extends Activity {
 		return true;
 	}
 	
-	TextView nameInput;
-	TextView costInput;
-	Spinner occurrenceInput;
+	TextView nameInput, costInput;
+    Spinner occurrenceInput, dayInput, monthInput, yearInput;
 	Dialog newRecurringPrompt;
 	public void addRecurringExpense(View view)
 	{
@@ -65,21 +64,27 @@ public class RecurringExpensesActivity extends Activity {
 	    nameInput = (TextView) view.findViewById(R.id.name_input);
 	    costInput = (TextView) view.findViewById(R.id.cost_input);
 	    occurrenceInput = (Spinner) view.findViewById(R.id.occurance_input);
+	    dayInput = (Spinner) view.findViewById(R.id.day_input);
+	    monthInput = (Spinner) view.findViewById(R.id.month_input);
+	    yearInput = (Spinner) view.findViewById(R.id.year_input);
 	    
 	    newRecurringPrompt = new Dialog(mTheme);
-	    populateOccuranceSpinner(R.id.occurance_input, view);
+	    populateSpinner(view, R.id.occurance_input, R.array.occurance_array);
+	    populateSpinner(view, R.id.day_input, R.array.day_array);
+	    populateSpinner(view, R.id.month_input, R.array.month_array);
+	    populateSpinner(view, R.id.year_input, R.array.year_array);
 	    newRecurringPrompt.getWindow().setTitle("Input the following information");
 	    newRecurringPrompt.setContentView(view);
 	    newRecurringPrompt.show();
 	}
 	
-	private Spinner populateOccuranceSpinner(int id, View v)
+	private Spinner populateSpinner(View v, int spinnerId, int arrayId)
 	{
-		Spinner spinner = (Spinner) v.findViewById(id);
+		Spinner spinner = (Spinner) v.findViewById(spinnerId);
 		
 		// Create an ArrayAdapter using the string array and a default spinner layout
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-		        R.array.occurance_array, android.R.layout.simple_spinner_item);
+				 arrayId, android.R.layout.simple_spinner_item);
 		// Specify the layout to use when the list of choices appears
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		// Apply the adapter to the spinner
@@ -95,17 +100,20 @@ public class RecurringExpensesActivity extends Activity {
 	    String name = nameInput.getText().toString();
 	    String cost = costInput.getText().toString();
 	    int occurrence = occurrenceInput.getSelectedItemPosition();
+	    int day = dayInput.getSelectedItemPosition();
+	    int month = monthInput.getSelectedItemPosition();
+	    int year = yearInput.getSelectedItemPosition();
 	    
 	    if(name.trim().length() <= 0) {
-	    	CommonFunctions.raiseFailure("Your name field was empty.  Cannot add", false, this);
+	    	BalanceFunctions.raiseFailure("Your name field was empty.  Cannot add", false, this);
 	    	return;
 	    } else if(cost.trim().length() <= 0) {
-	    	CommonFunctions.raiseFailure("Your cost field was empty.  Cannot add", false, this);
+	    	BalanceFunctions.raiseFailure("Your cost field was empty.  Cannot add", false, this);
 	    	return;
 	    } 
 	    
 	    Table_RecurringExpenses  t = new Table_RecurringExpenses(this);
-	    long newID = t.addNew(name, Double.parseDouble(cost), occurrence);
+	    long newID = t.addNew(name, Double.parseDouble(cost), occurrence, day, month, year);
 	    
 	    addButton(name, newID);
 	}
@@ -125,6 +133,9 @@ public class RecurringExpensesActivity extends Activity {
 	    nameInput = (TextView) view.findViewById(R.id.name_input);
 	    costInput = (TextView) view.findViewById(R.id.cost_input);
 	    occurrenceInput = (Spinner) view.findViewById(R.id.occurance_input);
+	    dayInput = (Spinner) view.findViewById(R.id.day_input);
+	    monthInput = (Spinner) view.findViewById(R.id.month_input);
+	    yearInput = (Spinner) view.findViewById(R.id.year_input);
 	    
 	    Table_RecurringExpenses t = new Table_RecurringExpenses(this);
 	    Table_RecurringExpenses.Row row = t.getSingle(recurringExpenseBeingModified.elementID);
@@ -132,8 +143,14 @@ public class RecurringExpensesActivity extends Activity {
 	    costInput.setText(row.cost+"");
 	    
 	    newRecurringPrompt = new Dialog(mTheme);
-	    populateOccuranceSpinner(R.id.occurance_input, view);
+	    populateSpinner(view, R.id.occurance_input, R.array.occurance_array);
+	    populateSpinner(view, R.id.day_input, R.array.day_array);
+	    populateSpinner(view, R.id.month_input, R.array.month_array);
+	    populateSpinner(view, R.id.year_input, R.array.year_array);
 	    occurrenceInput.setSelection(row.occurrence);
+	    dayInput.setSelection(row.dayDue);
+	    monthInput.setSelection(row.monthDue);
+	    yearInput.setSelection(row.yearDue);
 	    newRecurringPrompt.getWindow().setTitle("Category Info");
 	    newRecurringPrompt.setContentView(view);
 	    newRecurringPrompt.show();
@@ -146,17 +163,20 @@ public class RecurringExpensesActivity extends Activity {
 	    String newName = nameInput.getText().toString();
 	    String newCost = costInput.getText().toString();
 	    int newOccurrence = occurrenceInput.getSelectedItemPosition();
+	    int newDay = dayInput.getSelectedItemPosition();
+	    int newMonth = monthInput.getSelectedItemPosition();
+	    int newYear = yearInput.getSelectedItemPosition();
 	    
 	    if(newName.trim().length() <= 0) {
-	    	CommonFunctions.raiseFailure("Your name field was empty.  Cannot add", false, this);
+	    	BalanceFunctions.raiseFailure("Your name field was empty.  Cannot add", false, this);
 	    	return;
 	    } else if(newName.trim().length() <= 0) {
-	    	CommonFunctions.raiseFailure("Your cost field was empty.  Cannot add", false, this);
+	    	BalanceFunctions.raiseFailure("Your cost field was empty.  Cannot add", false, this);
 	    	return;
 	    }
 	    
 	    Table_RecurringExpenses  t = new Table_RecurringExpenses(this);
-	    t.update(recurringExpenseBeingModified.elementID, newName, newCost, newOccurrence);
+	    t.update(recurringExpenseBeingModified.elementID, newName, newCost, newOccurrence, newDay, newMonth, newYear);
 	    
 	    recurringExpenseBeingModified.setText(newName);
 	}
