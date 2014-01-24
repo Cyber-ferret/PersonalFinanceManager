@@ -1,8 +1,13 @@
 package activities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import nonActivities.BalanceFunctions;
 
 import org.apache.commons.lang3.StringUtils;
+
+import sqllite.Table_ExpenseCategories;
 
 import com.example.personalfinancemanager.R;
 
@@ -11,7 +16,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 public class ExpenseActivity extends Activity {
@@ -22,6 +29,20 @@ public class ExpenseActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.deduct_funds);
+		
+		// Populate the expense category spinner with the categories
+		List<String> array = new ArrayList<String>();
+		List<Table_ExpenseCategories.Row> spinnerArray =  (new Table_ExpenseCategories(this)).getRows();
+		
+		for (int i=0; i < spinnerArray.size(); i++)
+		{
+			array.add(spinnerArray.get(i).categoryName);
+		}
+
+	    ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, array);
+	    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+	    Spinner spinner = (Spinner) findViewById(R.id.expense_category);
+	    spinner.setAdapter(adapter);
 	}
 
 	/**

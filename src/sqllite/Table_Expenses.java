@@ -8,7 +8,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 public class Table_Expenses {
-	private static final String DEFAULT_NAME = "misc";
 	Context storedContext;
 	
 	public Table_Expenses(Context c)
@@ -16,32 +15,23 @@ public class Table_Expenses {
 		storedContext = c;
 	}
 	
-	public void addNew(double cost)
-	{
-		addNew(DEFAULT_NAME, cost, System.currentTimeMillis());
-	}
-	
-	public void addNew(String category, double cost)
-	{
-		addNew(category, cost, System.currentTimeMillis());
-	}
-	
-	public void addNew(String category, double cost, long dateTime)
+	public long addNew(String category, double cost)
 	{
 		ContentValues values = new ContentValues();
 		SQLiteDatabase database = new Database(storedContext).getWritableDatabase();
 		
 	    values.put(Database.Expenses.CATEGORY_FIELD, category);
 	    values.put(Database.Expenses.COST_FIELD, cost);
-	    values.put(Database.Expenses.DATETIME_FIELD, dateTime);
+	    values.put(Database.Expenses.DATETIME_FIELD, System.currentTimeMillis());
 	    
-	    database.insert(Database.Expenses.TABLE_NAME, null, values);
+	    return database.insert(Database.Expenses.TABLE_NAME, null, values);
 	}
 	
 	public ArrayList<Row> getRows()
 	{
 		ArrayList<Row> rows = new ArrayList<Row>();
-		String[] columns = {Database.Expenses.ID_FIELD, Database.Expenses.CATEGORY_FIELD, Database.Expenses.COST_FIELD, Database.Expenses.DATETIME_FIELD};
+		String[] columns = {Database.Expenses.ID_FIELD, Database.Expenses.CATEGORY_FIELD,
+				Database.Expenses.COST_FIELD, Database.Expenses.DATETIME_FIELD};
 		SQLiteDatabase database = new Database(storedContext).getWritableDatabase();
 
 	    Cursor c = database.query(Database.Expenses.TABLE_NAME, columns, null, null, null, null, null);

@@ -49,7 +49,6 @@ public class Table_ExpenseCategories {
 		String[] columns = {Database.ExpenseCategories.ID_FIELD, Database.ExpenseCategories.NAME_FIELD};
 		SQLiteDatabase database = new Database(storedContext).getWritableDatabase();
 
-		//if(database.)
 		Cursor  c = null;
 		try
 		{

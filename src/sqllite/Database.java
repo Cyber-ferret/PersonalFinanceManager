@@ -19,7 +19,7 @@ public class Database extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        //db.execSQL(generateTableCreateString(ADDITIONAL_FUNDS_NAME, additionalFundsFields));
+        db.execSQL(generateTableCreateString(AdditionalFunds.TABLE_NAME, AdditionalFunds.fields));
     	db.execSQL(generateTableCreateString(ExpenseCategories.TABLE_NAME, ExpenseCategories.fields));
     	db.execSQL(generateTableCreateString(Expenses.TABLE_NAME, Expenses.fields));
     	db.execSQL(generateTableCreateString(RecurringExpenses.TABLE_NAME, RecurringExpenses.fields));
@@ -33,12 +33,22 @@ public class Database extends SQLiteOpenHelper {
 		// TODO Auto-generated method stub
 	}
 	
-	/*private static final String ADDITIONAL_FUNDS_NAME = "Additional_Funds";
-	HashMap<String, String> additionalFundsFields = new HashMap<String, String>()
-	{ private static final long serialVersionUID = 1L; {
-		put("ID", "integer primary key autoincrement");
-		put("Name", "TEXT");
-	}};*/
+	public static final class AdditionalFunds
+	{
+		public static final String TABLE_NAME = "Additional_Funds";
+		public static final String ID_FIELD = "ID";
+		public static final String AMOUNT = "Amount";
+		public static final String DESCRIPTION = "Description";
+		public static final String DATETIME_FIELD = "DateTime";
+		
+		public static final HashMap<String, String> fields = new HashMap<String, String>()
+		{ private static final long serialVersionUID = 1L; {
+			put(ID_FIELD, "integer primary key autoincrement");
+			put(AMOUNT, "REAL");
+			put(DESCRIPTION, "TEXT");
+			put(DATETIME_FIELD, "INTEGER");
+		}};
+	}
 	
 	public static final class ExpenseCategories
 	{

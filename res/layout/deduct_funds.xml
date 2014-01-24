@@ -6,6 +6,13 @@
     android:layout_gravity="center"
     android:columnCount="3"
     android:orientation="horizontal" >
+    
+    <Spinner
+        android:id="@+id/expense_category"
+	    android:layout_columnSpan="3"
+        android:layout_gravity="center"
+        android:textSize="24dip" />
+    
     <TextView 
         android:id="@+id/display_value"
         android:layout_columnSpan="3"

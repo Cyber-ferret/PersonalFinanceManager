@@ -1,5 +1,7 @@
 package activities;
 
+import stats.StatisticsMenu;
+import info.InformationMenu;
 import nonActivities.BalanceFunctions;
 
 import com.example.personalfinancemanager.R;

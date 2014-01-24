@@ -30,15 +30,15 @@
             android:label="@string/title_activity_add_funds" >
         </activity>
         <activity
-            android:name="activities.RecurringExpensesActivity"
+            android:name="info.RecurringExpensesActivity"
             android:label="@string/title_activity_recurring_expenses" >
         </activity>
         <activity
-            android:name="activities.ManageExpenseCategoriesActivity"
+            android:name="info.ManageExpenseCategoriesActivity"
             android:label="@string/title_activity_manage_expense_categories" >
         </activity>
         <activity
-            android:name="activities.IncomeActivity"
+            android:name="info.IncomeActivity"
             android:label="@string/title_activity_income" >
         </activity>
         <activity
@@ -55,12 +55,16 @@
             android:label="@string/title_activity_user_guide" >
         </activity>
         <activity
-            android:name="activities.InformationMenu"
+            android:name="info.InformationMenu"
             android:label="@string/title_activity_information_menu" >
         </activity>
         <activity
-            android:name="activities.StatisticsMenu"
+            android:name="stats.StatisticsMenu"
             android:label="@string/title_activity_statistics_menu" >
+        </activity>
+        <activity
+            android:name="stats.TransactionHistoryActivity"
+            android:label="@string/title_activity_transaction_history" >
         </activity>
     </application>
 
