@@ -13,10 +13,12 @@ import sqllite.Table_Expenses;
 import com.example.personalfinancemanager.R;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -112,5 +114,12 @@ public class ExpenseActivity extends Activity {
 		String category = categorySpinner.getSelectedItem().toString();
 		
 		t.addNew(category, cost);
+		
+		Dialog dialog = new Dialog(this);
+		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		dialog.setContentView(R.layout.text_pop_up);
+		TextView text = (TextView)dialog.findViewById(R.id.message_text);
+		text.setText("Deducted $" + cost + " for " + category + ".");
+		dialog.show();
 	}
 }

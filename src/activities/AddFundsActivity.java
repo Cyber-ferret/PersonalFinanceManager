@@ -10,8 +10,10 @@ import com.example.personalfinancemanager.R;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.Dialog;
 import android.view.Menu;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -79,5 +81,12 @@ public class AddFundsActivity extends Activity {
 		String description = descriptionText.getText().toString();
 		
 		t.addNew(amount, description);
+		
+		Dialog dialog = new Dialog(this);
+		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		dialog.setContentView(R.layout.text_pop_up);
+		TextView text = (TextView)dialog.findViewById(R.id.message_text);
+		text.setText("Added $" + amount + " for " + description + ".");
+		dialog.show();
 	}
 }

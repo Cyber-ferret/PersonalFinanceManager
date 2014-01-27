@@ -10,10 +10,13 @@ import com.example.personalfinancemanager.R;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.view.Menu;
 import android.view.View;
+import android.view.Window;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class IncomeActivity extends Activity {
 
@@ -42,6 +45,13 @@ public class IncomeActivity extends Activity {
 			String val = t.getText().toString();
 			double amount = Double.parseDouble(val);
 			writeToFile(amount);
+			
+			Dialog dialog = new Dialog(this);
+			dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+			dialog.setContentView(R.layout.text_pop_up);
+			TextView text = (TextView)dialog.findViewById(R.id.message_text);
+			text.setText("Updated Income to $" + amount + ".");
+			dialog.show();
 		} catch (Exception e) {
 			
 		}
