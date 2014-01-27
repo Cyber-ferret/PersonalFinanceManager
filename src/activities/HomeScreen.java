@@ -3,6 +3,7 @@ package activities;
 import stats.StatisticsMenu;
 import info.InformationMenu;
 import nonActivities.BalanceFunctions;
+import nonActivities.DailyUpdateThread;
 
 import com.example.personalfinancemanager.R;
 
@@ -22,6 +23,9 @@ public class HomeScreen extends Activity {
 		
 		TextView t = (TextView) findViewById(R.id.balance_display);
 		t.setText("$" + BalanceFunctions.getBalance(this));
+		
+		DailyUpdateThread updater = new DailyUpdateThread(this);
+		updater.update();
 	}
 
 	@Override
@@ -38,6 +42,9 @@ public class HomeScreen extends Activity {
 
 		TextView t = (TextView) findViewById(R.id.balance_display);
 		t.setText("$" + BalanceFunctions.getBalance(this));
+		
+		DailyUpdateThread updater = new DailyUpdateThread(this);
+		updater.update();
     }
 	
 	public void openSelected(View view)

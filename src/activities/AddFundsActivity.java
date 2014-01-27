@@ -4,6 +4,8 @@ import nonActivities.BalanceFunctions;
 
 import org.apache.commons.lang3.StringUtils;
 
+import sqllite.Table_AdditionalFunds;
+
 import com.example.personalfinancemanager.R;
 
 import android.os.Bundle;
@@ -11,6 +13,7 @@ import android.app.Activity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class AddFundsActivity extends Activity {
@@ -27,26 +30,6 @@ public class AddFundsActivity extends Activity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-
-	/*@Override
-	public boolean onOptionsItemSelected(MenuItem item)
-	{
-		//switch(item.getItemId()) {
-		//case R.string.menu_item1:
-			Intent intent = new Intent(this, AddFundsActivity.class);
-			startActivity(intent);
-		//	break;
-		//case R.string.menu_item2:
-		//	break;
-		//case R.string.menu_item3:
-		//	break;
-		//case R.string.menu_item4:
-		//	break;
-		//}
-		
-		return true;
-	}*/
-	
 	
 	public void keyPress(View view)
 	{
@@ -87,6 +70,14 @@ public class AddFundsActivity extends Activity {
 	{
 		TextView editText = (TextView) findViewById(R.id.display_value);
 		String message = editText.getText().toString();
-		BalanceFunctions.addFunds(message, view, this);
+		BalanceFunctions.addFunds(message, this);
+		
+		Table_AdditionalFunds t = new Table_AdditionalFunds(this);
+		EditText descriptionText = (EditText) findViewById(R.id.funding_description);
+		
+		double amount = Double.parseDouble(message);
+		String description = descriptionText.getText().toString();
+		
+		t.addNew(amount, description);
 	}
 }

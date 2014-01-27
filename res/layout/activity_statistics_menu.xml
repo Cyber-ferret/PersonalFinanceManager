@@ -27,5 +27,12 @@
         android:layout_height="wrap_content"
         android:text="Bill Due Dates" 
         android:onClick="openSelected"/>
+     
+     <Button
+        android:id="@+id/view_daily_allowance"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="View Daily Allowance" 
+        android:onClick="openSelected"/>
 
 </LinearLayout>

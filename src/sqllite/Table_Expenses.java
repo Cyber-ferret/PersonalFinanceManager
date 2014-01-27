@@ -60,6 +60,6 @@ public class Table_Expenses {
 		public int ID;
 		public String category;
 		public double cost;
-		public int datetime;
+		public long datetime;
 	}
 }

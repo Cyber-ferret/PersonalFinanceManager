@@ -8,6 +8,7 @@ import nonActivities.BalanceFunctions;
 import org.apache.commons.lang3.StringUtils;
 
 import sqllite.Table_ExpenseCategories;
+import sqllite.Table_Expenses;
 
 import com.example.personalfinancemanager.R;
 
@@ -103,5 +104,13 @@ public class ExpenseActivity extends Activity {
 		TextView editText = (TextView) findViewById(R.id.display_value);
 		String message = editText.getText().toString();
 		BalanceFunctions.deductFunds(message, view, this);
+		
+		Table_Expenses t = new Table_Expenses(this);
+		Spinner categorySpinner = (Spinner) findViewById(R.id.expense_category);
+		
+		double cost = Double.parseDouble(message);
+		String category = categorySpinner.getSelectedItem().toString();
+		
+		t.addNew(category, cost);
 	}
 }

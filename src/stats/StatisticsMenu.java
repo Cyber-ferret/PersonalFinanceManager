@@ -1,14 +1,17 @@
 package stats;
 
+import nonActivities.DailyUpdateThread;
+
 import com.example.personalfinancemanager.R;
-import com.example.personalfinancemanager.R.layout;
-import com.example.personalfinancemanager.R.menu;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
+import android.view.Window;
+import android.widget.TextView;
 
 public class StatisticsMenu extends Activity {
 
@@ -30,8 +33,8 @@ public class StatisticsMenu extends Activity {
 		Intent i;
 		switch(view.getId()) {
 		case R.id.view_transaction_history:
-			//i = new Intent(this, IncomeActivity.class);
-			//startActivity(i);
+			i = new Intent(this, TransactionHistoryActivity.class);
+			startActivity(i);
 			break;
 		case R.id.spending_pie_graph:
 			//i = new Intent(this, IncomeActivity.class);
@@ -40,6 +43,15 @@ public class StatisticsMenu extends Activity {
 		case R.id.bill_due_dates:
 			//i = new Intent(this, IncomeActivity.class);
 			//startActivity(i);
+			break;
+		case R.id.view_daily_allowance:
+			Dialog dialog = new Dialog(this);
+			dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+			dialog.setContentView(R.layout.text_pop_up);
+			TextView text = (TextView)dialog.findViewById(R.id.message_text);
+			DailyUpdateThread t = new DailyUpdateThread(this);
+			text.setText("$" + t.getDailyAllowance() + " per day");
+			dialog.show();
 			break;
 		}
 	}

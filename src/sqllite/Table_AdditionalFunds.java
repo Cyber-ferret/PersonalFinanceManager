@@ -34,7 +34,7 @@ public class Table_AdditionalFunds {
 	{
 		ArrayList<Row> rows = new ArrayList<Row>();
 		String[] columns = {Database.AdditionalFunds.ID_FIELD, Database.AdditionalFunds.AMOUNT, 
-				Database.AdditionalFunds.DESCRIPTION};
+				Database.AdditionalFunds.DESCRIPTION, Database.AdditionalFunds.DATETIME_FIELD};
 		SQLiteDatabase database = new Database(storedContext).getWritableDatabase();
 
 		Cursor  c = null;

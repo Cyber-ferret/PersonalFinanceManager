@@ -1,7 +1,6 @@
 package nonActivities;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.math.BigDecimal;
 import java.util.Scanner;
@@ -11,7 +10,7 @@ import android.content.Context;
 import android.view.View;
 
 public class BalanceFunctions {
-public static String BALANCE_FILE_LOCATION = "Balance.txt";
+	public static String BALANCE_FILE_LOCATION = "Balance.txt";
 	
 	/**
 	 * gets the text field then updates the balance via the
@@ -21,14 +20,14 @@ public static String BALANCE_FILE_LOCATION = "Balance.txt";
 	{
 		try 
 		{
-			double value = Double.parseDouble(message);
-			double balance = getBalance(context);
-			updateBalance(new BigDecimal(balance - value), context);
+			BigDecimal value = new BigDecimal(message);
+			BigDecimal balance = getBalance(context);
+			updateBalance(balance.subtract(value), context);
 			return true;
 		}
 		catch (NumberFormatException e)
 		{
-			// Do Nothing
+			raiseFailure("Could not interpret " +  message + " as a dollar amount.", false, context);
 			return false;
 		}
 	}
@@ -37,13 +36,13 @@ public static String BALANCE_FILE_LOCATION = "Balance.txt";
 	 * gets the text view then updates the balance via the
 	 * updateBalance method.  It then displays the new balance.
 	 */
-	public static boolean addFunds(String message, View view, Context context)
+	public static boolean addFunds(String message, Context context)
 	{
 		try 
 		{
-			double value = Double.parseDouble(message);
-			double balance = getBalance(context);
-			updateBalance(new BigDecimal(balance + value), context);
+			BigDecimal value = new BigDecimal(message);
+			BigDecimal balance = getBalance(context);
+			updateBalance(balance.add(value), context);
 			return true;
 		}
 		catch (NumberFormatException e)
@@ -79,23 +78,21 @@ public static String BALANCE_FILE_LOCATION = "Balance.txt";
 		}
 	}
 	
-	public static double getBalance(Context context)
+	public static BigDecimal getBalance(Context context)
 	{
 		String line = "";
 		try {
 			FileInputStream s = context.openFileInput(BALANCE_FILE_LOCATION);
 			line = (new Scanner(s)).nextLine();
-			return Double.parseDouble(line);
-		} catch (FileNotFoundException e) {
-			//raiseFailure("Could not find the file " + fileName, false);
-			return 0;
+			return new BigDecimal(line);
 		} catch (Exception e) {
-			return 0;  // No file found, just return 0
+			return new BigDecimal(0);
 		}
 	}
 	
 	private static void updateBalance(BigDecimal newAmount, Context c)
 	{
+		newAmount = newAmount.setScale(2, BigDecimal.ROUND_FLOOR);
 		FileOutputStream outputStream;
 
 		try {
