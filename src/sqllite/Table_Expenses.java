@@ -42,7 +42,7 @@ public class Table_Expenses {
 			row.ID = c.getInt(c.getColumnIndex(Database.Expenses.ID_FIELD));
 			row.category = c.getString(c.getColumnIndex(Database.Expenses.CATEGORY_FIELD));
 			row.cost = c.getDouble(c.getColumnIndex(Database.Expenses.COST_FIELD));
-			row.datetime = c.getInt(c.getColumnIndex(Database.Expenses.DATETIME_FIELD));
+			row.datetime = c.getLong(c.getColumnIndex(Database.Expenses.DATETIME_FIELD));
 			
 			rows.add(row);
 			

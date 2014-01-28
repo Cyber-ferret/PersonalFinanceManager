@@ -31,16 +31,16 @@ public final class R {
         public static final int round_button=0x7f020001;
     }
     public static final class id {
-        public static final int ScrollView01=0x7f090016;
+        public static final int ScrollView01=0x7f09000d;
         public static final int action_settings=0x7f090021;
         public static final int addFunds=0x7f090022;
-        public static final int add_category_button=0x7f09000e;
+        public static final int add_category_button=0x7f09000f;
         public static final int add_expense=0x7f090003;
         public static final int add_funds=0x7f090004;
-        public static final int add_recurring_expense_button=0x7f090010;
-        public static final int add_recurring_expense_linearlayout=0x7f09000f;
+        public static final int add_recurring_expense_button=0x7f090011;
+        public static final int add_recurring_expense_linearlayout=0x7f090010;
         public static final int balance_display=0x7f090002;
-        public static final int bill_due_dates=0x7f090014;
+        public static final int bill_due_dates=0x7f090015;
         public static final int cost_input=0x7f09001b;
         public static final int day_input=0x7f09001d;
         public static final int display_value=0x7f090018;
@@ -56,19 +56,19 @@ public final class R {
         public static final int funding_description=0x7f090017;
         public static final int income=0x7f090008;
         public static final int layout_root=0x7f090001;
-        public static final int manage_categories_linearlayout=0x7f09000d;
+        public static final int manage_categories_linearlayout=0x7f09000e;
         public static final int message_text=0x7f090020;
         public static final int month_input=0x7f09001e;
         public static final int name_input=0x7f090019;
         public static final int occurance_input=0x7f09001c;
-        public static final int savings=0x7f090011;
+        public static final int savings=0x7f090012;
         public static final int settings=0x7f090025;
-        public static final int spending_pie_graph=0x7f090013;
+        public static final int spending_pie_graph=0x7f090014;
         public static final int statistics=0x7f090006;
         public static final int transaction_history_linearlayout=0x7f090000;
         public static final int user_guide=0x7f090007;
-        public static final int view_daily_allowance=0x7f090015;
-        public static final int view_transaction_history=0x7f090012;
+        public static final int view_daily_allowance=0x7f090016;
+        public static final int view_transaction_history=0x7f090013;
         public static final int year_input=0x7f09001f;
     }
     public static final class layout {

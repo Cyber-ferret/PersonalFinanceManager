@@ -1,6 +1,10 @@
 package stats;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+
+import org.joda.time.DateTime;
 
 import sqllite.Table_AdditionalFunds;
 import sqllite.Table_Expenses;
@@ -8,6 +12,7 @@ import sqllite.Table_Expenses;
 import com.example.personalfinancemanager.R;
 
 import android.os.Bundle;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.View;
@@ -58,23 +63,25 @@ public class TransactionHistoryActivity extends Activity {
 		while(numLoaded < maxLoadable && (fundsLocation >= 0 || expensesLocation >= 0))
 		{
 			// Load a textview from the most recent one
-			long expenseTime = expensesLocation < 0 ? Integer.MIN_VALUE : expensesList.get(expensesLocation).datetime;
-			long fundsTime = fundsLocation < 0 ? Integer.MIN_VALUE : fundsList.get(fundsLocation).dateTime;
+			long expenseTime = expensesLocation < 0 ? Long.MIN_VALUE : expensesList.get(expensesLocation).datetime;
+			long fundsTime = fundsLocation < 0 ? Long.MIN_VALUE : fundsList.get(fundsLocation).dateTime;
 			
 			// Load whichever is more recent
 			if(expenseTime > fundsTime) {
 				// Add a textview for the expense
 				double cost = expensesList.get(expensesLocation).cost;
 				String category = expensesList.get(expensesLocation).category;
+				DateTime date = new DateTime(expensesList.get(expensesLocation).datetime);
 				
-				addTextView(category, cost, true);
+				addTextView(category, cost, date.toDate(), true);
 				expensesLocation--;
 			} else {
 				// Add a textview for the addition
 				double amount = fundsList.get(fundsLocation).amount;
 				String description = fundsList.get(fundsLocation).description;
+				DateTime date = new DateTime(fundsList.get(fundsLocation).dateTime);
 				
-				addTextView(description, amount, false);
+				addTextView(description, amount, date.toDate(), false);
 				fundsLocation--;
 			}
 			
@@ -82,7 +89,8 @@ public class TransactionHistoryActivity extends Activity {
 		}
 	}
 	
-	private void addTextView(String description, double amount, boolean isExpense)
+	@SuppressLint("SimpleDateFormat")
+	private void addTextView(String description, double amount, Date date, boolean isExpense)
 	{
 		LinearLayout r = (LinearLayout) findViewById(R.id.transaction_history_linearlayout);
 	    r.setOrientation(LinearLayout.VERTICAL);
@@ -90,7 +98,9 @@ public class TransactionHistoryActivity extends Activity {
 
 	    String plusOrMinus = isExpense ? "-" : "+";
 	    
-	    text.setText(plusOrMinus + amount + ": " + description);
+	    SimpleDateFormat dateFormat = new SimpleDateFormat("MMM-dd-yy hh:mm:ss a");
+	    
+	    text.setText(plusOrMinus + amount + ": " + description + "   (" + dateFormat.format(date) + ")");
 	    text.setWidth(LayoutParams.MATCH_PARENT);
 	    r.addView(text);
 	}
