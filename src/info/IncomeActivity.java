@@ -24,7 +24,7 @@ public class IncomeActivity extends Activity {
 		setContentView(R.layout.activity_income);
 		
 		EditText t = (EditText) this.findViewById(R.id.income);
-		t.setText(this.getIncome()); // Set the income (defaults to 0)
+		t.setText(getIncome(this)); // Set the income (defaults to 0)
 	}
 
 	@Override
@@ -69,12 +69,12 @@ public class IncomeActivity extends Activity {
 		}
 	}
 	
-	public String getIncome()
+	public static String getIncome(Context c)
 	{
 		String filename = "income.txt";
 
 		try {
-			FileInputStream s = this.openFileInput(filename);
+			FileInputStream s = c.openFileInput(filename);
 			return (new Scanner(s)).nextLine();
 		} catch (Exception e) {
 			return "0";

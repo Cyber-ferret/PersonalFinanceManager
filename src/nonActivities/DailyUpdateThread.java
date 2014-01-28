@@ -1,11 +1,11 @@
 package nonActivities;
 
-import java.io.BufferedReader;
+import info.IncomeActivity;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -19,6 +19,7 @@ import org.joda.time.Days;
 public class DailyUpdateThread {	
 	public static String LAST_UPDATE_FILE_LOCATION = "LastUpdate.txt";
 	private static int DAYS_IN_YEAR = 365;
+	private static int WEEKS_IN_YEAR = 52;
 	Context context;
 	
 	public DailyUpdateThread(Context context)
@@ -39,27 +40,29 @@ public class DailyUpdateThread {
 			// i.e. if last update was 10pm last night, daysbetween will return 0 if called at 9am today
 		}
 		
-		double totalMoneyToAdd = daysBetween * getDailyAllowance();
+		double totalMoneyToAdd = daysBetween * getDailyAllowance().doubleValue();
 		
 		BalanceFunctions.addFunds(totalMoneyToAdd+"", context); // Update balance accordingly
 		
 		updateLastDate(now.toString(), context); // And update the file
 	}
 	
-	public double getDailyAllowance()
+	public BigDecimal getDailyAllowance()
 	{
-		double annualIncome = Double.parseDouble(getIncome());
-		double annualCost = getRecurringExpensesAnnualTotal();
-		double dailyAllowance = (annualIncome - annualCost) / DAYS_IN_YEAR; // not rounded
+		BigDecimal annualIncome = new BigDecimal(IncomeActivity.getIncome(context));
+		BigDecimal annualCost = getRecurringExpensesAnnualTotal();
+		BigDecimal annualSavings = getAnnualSavings();
+		BigDecimal dailyAllowance = annualIncome.subtract(annualCost);
+		dailyAllowance = dailyAllowance.subtract(annualSavings);
+		dailyAllowance = dailyAllowance.divide(new BigDecimal(DAYS_IN_YEAR), 2, BigDecimal.ROUND_FLOOR); // not rounded
 		
 		// now truncate it to 2 decimals
-		int truncated = (int) (dailyAllowance * 100.);
-		dailyAllowance = ((double) truncated) / 100.;
+		dailyAllowance = dailyAllowance.setScale(2, BigDecimal.ROUND_FLOOR);
 		return dailyAllowance;
 	}
 	
 	// check
-	private double getRecurringExpensesAnnualTotal()
+	private BigDecimal getRecurringExpensesAnnualTotal()
 	{
 		Table_RecurringExpenses t = new Table_RecurringExpenses(context);
 		ArrayList<Table_RecurringExpenses.Row> rows = t.getRows();
@@ -74,7 +77,21 @@ public class DailyUpdateThread {
 			annualSum += annualCost;
 		}
 		
-		return annualSum;
+		return new BigDecimal(annualSum);
+	}
+	
+	private BigDecimal getAnnualSavings()
+	{
+		String filename = "Savings.txt";
+
+		try {
+			FileInputStream s = context.openFileInput(filename);
+			BigDecimal weeklySavings = new BigDecimal((new Scanner(s)).nextLine());
+			BigDecimal annualSavings = weeklySavings.multiply(new BigDecimal(WEEKS_IN_YEAR));
+			return annualSavings;
+		} catch (Exception e) {
+			return new BigDecimal(0);
+		}
 	}
 	
 	// check
@@ -97,35 +114,6 @@ public class DailyUpdateThread {
 			default:
 				return 0;
 		}
-	}
-	
-	// check
-	private String getIncome()
-	{
-		String filename = "income.txt";
-		FileInputStream in;
-
-		try {
-		    in = this.context.openFileInput(filename);
-		    String income = convertStreamToString(in);
-		    in.close();        
-		    return income;
-		  
-		} catch (Exception e) {
-			return "0";
-		}
-	}
-	
-	// check
-	private static String convertStreamToString(InputStream is) throws Exception {
-	    BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-	    StringBuilder sb = new StringBuilder();
-	    String line = null;
-	    while ((line = reader.readLine()) != null) {
-	      sb.append(line).append("\n");
-	    }
-	    reader.close();
-	    return sb.toString();
 	}
 	
 	// check
