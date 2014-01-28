@@ -27,5 +27,12 @@
         android:layout_height="wrap_content"
         android:text="Edit Expense Categories" 
         android:onClick="openSelected"/>
+     
+     <Button
+        android:id="@+id/edit_savings"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Edit Savings" 
+        android:onClick="openSelected"/>
 
 </LinearLayout>

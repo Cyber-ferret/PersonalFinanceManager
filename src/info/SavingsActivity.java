@@ -2,6 +2,7 @@ package info;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.math.BigDecimal;
 import java.util.Scanner;
 
 import com.example.personalfinancemanager.R;
@@ -16,69 +17,71 @@ import android.view.Window;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class IncomeActivity extends Activity {
+public class SavingsActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_income);
+		setContentView(R.layout.activity_savings);
 		
-		EditText t = (EditText) this.findViewById(R.id.income);
-		t.setText(this.getIncome()); // Set the income (defaults to 0)
+		EditText t = (EditText) this.findViewById(R.id.savings);
+		t.setText(this.getSavings().toString());
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.income, menu);
+		getMenuInflater().inflate(R.menu.savings, menu);
 		return true;
 	}
 	
-	public void updateIncome(View view)
+	public void updateSavings(View view)
 	{
-		EditText t = (EditText) this.findViewById(R.id.income);
+		EditText t = (EditText) this.findViewById(R.id.savings);
 		
 		try
 		{
 			String val = t.getText().toString();
-			double amount = Double.parseDouble(val);
+			BigDecimal amount = new BigDecimal(val);
 			writeToFile(amount);
 			
 			Dialog dialog = new Dialog(this);
 			dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 			dialog.setContentView(R.layout.text_pop_up);
 			TextView text = (TextView)dialog.findViewById(R.id.message_text);
-			text.setText("Updated Income to $" + amount + ".");
+			text.setText("Updated Savings to $" + amount + ".");
 			dialog.show();
 		} catch (Exception e) {
 			
 		}
 	}
 
-	public void writeToFile(double amount)
+	public void writeToFile(BigDecimal savings)
 	{
-		String filename = "income.txt";
+		String filename = "Savings.txt";
 		FileOutputStream outputStream;
+		
+		savings = savings.setScale(2, BigDecimal.ROUND_FLOOR);
 
 		try {
 			outputStream = openFileOutput(filename, Context.MODE_PRIVATE);
-			outputStream.write((amount+"").getBytes());
+			outputStream.write((savings+"").getBytes());
 			outputStream.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public String getIncome()
+	public BigDecimal getSavings()
 	{
-		String filename = "income.txt";
+		String filename = "Savings.txt";
 
 		try {
 			FileInputStream s = this.openFileInput(filename);
-			return (new Scanner(s)).nextLine();
+			return new BigDecimal((new Scanner(s)).nextLine());
 		} catch (Exception e) {
-			return "0";
+			return new BigDecimal(0);
 		}
 	}
-	
+
 }

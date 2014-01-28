@@ -66,6 +66,18 @@
             android:name="stats.TransactionHistoryActivity"
             android:label="@string/title_activity_transaction_history" >
         </activity>
+        <activity
+            android:name="stats.SpendingHabits"
+            android:label="@string/title_activity_spending_habits" >
+        </activity>
+        <activity
+            android:name="stats.BillDueDates"
+            android:label="@string/title_activity_bill_due_dates" >
+        </activity>
+        <activity
+            android:name="info.SavingsActivity"
+            android:label="@string/title_activity_savings" >
+        </activity>
     </application>
 
 </manifest>

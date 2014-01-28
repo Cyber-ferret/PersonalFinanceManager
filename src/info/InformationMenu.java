@@ -40,6 +40,10 @@ public class InformationMenu extends Activity {
 			i = new Intent(this, ManageExpenseCategoriesActivity.class);
 			startActivity(i);
 			break;
+		case R.id.edit_savings:
+			i = new Intent(this, SavingsActivity.class);
+			startActivity(i);
+			break;
 		}
 	}
 }

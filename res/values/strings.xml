@@ -33,5 +33,8 @@ So your \'bills\' (including savings) are $21,440 per year, leaving you with $10
 So if over the course of two weeks our imaginary person spends $80 on gas, $120 eating out, $80 on groceries, and buys a $30 gift for their S.O., their balance will be at $110 at the end of 2 weeks (It\'s a good idea to keep a buffer in case of something like a speeding ticket, but an emergency expense is also why it\'s VERY important to allocate money to savings).</string>
     <string name="title_activity_add_funds">AddFundsActivity</string>
     <string name="title_activity_transaction_history">TransactionHistoryActivity</string>
+    <string name="title_activity_spending_habits">SpendingHabits</string>
+    <string name="title_activity_bill_due_dates">BillDueDates</string>
+    <string name="title_activity_savings">SavingsActivity</string>
 
 </resources>
