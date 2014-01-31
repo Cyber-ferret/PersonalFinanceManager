@@ -11,28 +11,28 @@
         android:id="@+id/edit_income"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Edit My Income" 
+        android:text="@string/menu_edit_income" 
         android:onClick="openSelected"/>
 
      <Button
-        android:id="@+id/edit_recurring_expenses"
+        android:id="@+id/edit_bills"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Edit Repeating Expenses" 
+        android:text="@string/menu_edit_bills" 
         android:onClick="openSelected"/>
      
      <Button
-        android:id="@+id/edit_expense_categories"
+        android:id="@+id/edit_spending_categories"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Edit Expense Categories" 
+        android:text="@string/menu_edit_spending_categories" 
         android:onClick="openSelected"/>
      
      <Button
         android:id="@+id/edit_savings"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Edit Savings" 
+        android:text="@string/menu_edit_savings" 
         android:onClick="openSelected"/>
 
 </LinearLayout>

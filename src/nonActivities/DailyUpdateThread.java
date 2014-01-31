@@ -40,9 +40,9 @@ public class DailyUpdateThread {
 			// i.e. if last update was 10pm last night, daysbetween will return 0 if called at 9am today
 		}
 		
-		double totalMoneyToAdd = daysBetween * getDailyAllowance().doubleValue();
+		Double totalMoneyToAdd = daysBetween * getDailyAllowance().doubleValue();
 		
-		BalanceFunctions.addFunds(totalMoneyToAdd+"", context); // Update balance accordingly
+		BalanceFunctions.addFunds(totalMoneyToAdd, context); // Update balance accordingly
 		
 		updateLastDate(now.toString(), context); // And update the file
 	}

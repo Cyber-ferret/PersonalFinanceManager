@@ -8,17 +8,15 @@ import org.joda.time.DateTime;
 
 import sqllite.Table_AdditionalFunds;
 import sqllite.Table_Expenses;
-
-import com.example.personalfinancemanager.R;
-
-import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.view.Menu;
+import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.example.personalfinancemanager.R;
 
 public class TransactionHistoryActivity extends Activity {
 	private int fundsLocation, expensesLocation;
@@ -43,13 +41,6 @@ public class TransactionHistoryActivity extends Activity {
 		expensesLocation = expensesList.size() - 1;
 		
 		load();
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.transaction_history, menu);
-		return true;
 	}
 	
 	public void loadMore(View view)

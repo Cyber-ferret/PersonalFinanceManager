@@ -14,7 +14,7 @@
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Load More"
+        android:text="@string/text_load_more"
         android:onClick="loadMore"/>
 
 	</LinearLayout>

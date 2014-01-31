@@ -10,18 +10,18 @@
         android:id="@+id/name_input"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" 
-        android:hint="Category Name" />
+        android:hint="@string/category_name" />
 
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:onClick="modifyCategory"
-        android:text="Finished" />
+        android:text="@string/text_update" />
     
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Delete" 
+        android:text="@string/text_delete" 
         android:onClick="deleteCategory"/>
  
 </LinearLayout>

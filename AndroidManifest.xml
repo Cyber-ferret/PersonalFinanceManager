@@ -15,7 +15,7 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="activities.ExpenseActivity"
-            android:label="@string/app_name" >
+            android:label="@string/title_activity_deduct_funds" >
         </activity>
         <activity
             android:name="com.example.personalfinancemanager.DisplayMessageActivity"
@@ -31,7 +31,7 @@
         </activity>
         <activity
             android:name="info.RecurringExpensesActivity"
-            android:label="@string/title_activity_recurring_expenses" >
+            android:label="@string/title_activity_bills" >
         </activity>
         <activity
             android:name="info.ManageExpenseCategoriesActivity"
@@ -43,7 +43,7 @@
         </activity>
         <activity
             android:name="activities.HomeScreen"
-            android:label="@string/title_activity_home_screen" >
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -77,6 +77,10 @@
         <activity
             android:name="info.SavingsActivity"
             android:label="@string/title_activity_savings" >
+        </activity>
+        <activity
+            android:name="stats.SpendingPieGraph"
+            android:label="@string/title_activity_spending_habits" >
         </activity>
     </application>
 

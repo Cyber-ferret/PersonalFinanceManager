@@ -2,23 +2,22 @@ package info;
 
 import java.util.ArrayList;
 
-import com.example.personalfinancemanager.R;
-
-import sqllite.Table_ExpenseCategories;
 import nonActivities.BalanceFunctions;
-import android.os.Bundle;
+import sqllite.Table_ExpenseCategories;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.example.personalfinancemanager.R;
 
 public class ManageExpenseCategoriesActivity extends Activity {
 
@@ -35,13 +34,6 @@ public class ManageExpenseCategoriesActivity extends Activity {
 		{
 			this.addButton(rows.get(i).categoryName, rows.get(i).ID);
 		}
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.manage_expense_categories, menu);
-		return true;
 	}
 
 	TextView nameInput;
@@ -91,7 +83,7 @@ public class ManageExpenseCategoriesActivity extends Activity {
 	    String name = nameInput.getText().toString();
 	    
 	    if(name.trim().length() <= 0) {
-	    	BalanceFunctions.raiseFailure("Your name field was empty.  Cannot add", false, this);
+	    	BalanceFunctions.raiseFailure("Your name field was empty.  Cannot add", this);
 	    	return;
 	    }
 	    
@@ -108,7 +100,7 @@ public class ManageExpenseCategoriesActivity extends Activity {
 	    String newName = nameInput.getText().toString();
 	    
 	    if(newName.trim().length() <= 0) {
-	    	BalanceFunctions.raiseFailure("Your name field was empty.  Cannot add", false, this);
+	    	BalanceFunctions.raiseFailure("Your name field was empty.  Cannot add", this);
 	    	return;
 	    }
 	    

@@ -1,18 +1,16 @@
 package activities;
 
-import stats.StatisticsMenu;
 import info.InformationMenu;
 import nonActivities.BalanceFunctions;
 import nonActivities.DailyUpdateThread;
-
-import com.example.personalfinancemanager.R;
-
-import android.os.Bundle;
+import stats.StatisticsMenu;
 import android.app.Activity;
 import android.content.Intent;
-import android.view.Menu;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+
+import com.example.personalfinancemanager.R;
 
 public class HomeScreen extends Activity {
 
@@ -26,13 +24,6 @@ public class HomeScreen extends Activity {
 		
 		DailyUpdateThread updater = new DailyUpdateThread(this);
 		updater.update();
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.home_screen, menu);
-		return true;
 	}
 	
 	@Override

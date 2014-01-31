@@ -4,17 +4,16 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.Scanner;
 
-import com.example.personalfinancemanager.R;
-
-import android.os.Bundle;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
-import android.view.Menu;
+import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.example.personalfinancemanager.R;
 
 public class IncomeActivity extends Activity {
 
@@ -25,13 +24,6 @@ public class IncomeActivity extends Activity {
 		
 		EditText t = (EditText) this.findViewById(R.id.income);
 		t.setText(getIncome(this)); // Set the income (defaults to 0)
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.income, menu);
-		return true;
 	}
 	
 	public void updateIncome(View view)

@@ -9,20 +9,17 @@ import org.apache.commons.lang3.StringUtils;
 
 import sqllite.Table_ExpenseCategories;
 import sqllite.Table_Expenses;
-
-import com.example.personalfinancemanager.R;
-
 import android.app.Activity;
 import android.app.Dialog;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.example.personalfinancemanager.R;
 
 public class ExpenseActivity extends Activity {
 	/**
@@ -44,27 +41,9 @@ public class ExpenseActivity extends Activity {
 
 	    ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, array);
 	    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-	    Spinner spinner = (Spinner) findViewById(R.id.expense_category);
+	    Spinner spinner = (Spinner) findViewById(R.id.spending_category);
 	    spinner.setAdapter(adapter);
 	}
-
-	/**
-	 * Default method
-	 */
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.settings, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item)
-	{
-		// Implement me!
-		return true;
-	}
-	
 	
 	public void keyPress(View view)
 	{
@@ -105,13 +84,26 @@ public class ExpenseActivity extends Activity {
 	{
 		TextView editText = (TextView) findViewById(R.id.display_value);
 		String message = editText.getText().toString();
-		BalanceFunctions.deductFunds(message, view, this);
 		
 		Table_Expenses t = new Table_Expenses(this);
-		Spinner categorySpinner = (Spinner) findViewById(R.id.expense_category);
+		Spinner categorySpinner = (Spinner) findViewById(R.id.spending_category);
 		
-		double cost = Double.parseDouble(message);
-		String category = categorySpinner.getSelectedItem().toString();
+		String category;
+		Double cost;
+		try {
+			cost = Double.parseDouble(message);
+		} catch (Exception e) {
+			BalanceFunctions.raiseFailure("You must Input a valid number", this);
+			return;
+		}
+		
+		try {
+			category = categorySpinner.getSelectedItem().toString();
+		} catch (Exception e) {
+			category = "Miscellaneous"; // In case there is a null input
+		}
+		
+		BalanceFunctions.deductFunds(cost, view, this); // Now deduct the funds
 		
 		t.addNew(category, cost);
 		

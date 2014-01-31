@@ -1,17 +1,15 @@
 package stats;
 
 import nonActivities.DailyUpdateThread;
-
-import com.example.personalfinancemanager.R;
-
-import android.os.Bundle;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
-import android.view.Menu;
+import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
+
+import com.example.personalfinancemanager.R;
 
 public class StatisticsMenu extends Activity {
 
@@ -20,23 +18,16 @@ public class StatisticsMenu extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_statistics_menu);
 	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.statistics_menu, menu);
-		return true;
-	}
 	
 	public void openSelected(View view)
 	{
 		Intent i;
 		switch(view.getId()) {
-		case R.id.view_transaction_history:
+		case R.id.view_spending_history:
 			i = new Intent(this, TransactionHistoryActivity.class);
 			startActivity(i);
 			break;
-		case R.id.spending_pie_graph:
+		case R.id.spending_habits:
 			i = new Intent(this, SpendingHabits.class);
 			startActivity(i);
 			break;

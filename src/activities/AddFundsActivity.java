@@ -5,18 +5,16 @@ import nonActivities.BalanceFunctions;
 import org.apache.commons.lang3.StringUtils;
 
 import sqllite.Table_AdditionalFunds;
-
-import com.example.personalfinancemanager.R;
-
-import android.os.Bundle;
 import android.app.Activity;
 import android.app.Dialog;
-import android.view.Menu;
+import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.example.personalfinancemanager.R;
 
 public class AddFundsActivity extends Activity {
 
@@ -24,13 +22,6 @@ public class AddFundsActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.add_funds);
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
 	}
 	
 	public void keyPress(View view)
@@ -72,10 +63,19 @@ public class AddFundsActivity extends Activity {
 	{
 		TextView editText = (TextView) findViewById(R.id.display_value);
 		String message = editText.getText().toString();
-		BalanceFunctions.addFunds(message, this);
 		
 		Table_AdditionalFunds t = new Table_AdditionalFunds(this);
 		EditText descriptionText = (EditText) findViewById(R.id.funding_description);
+		
+		Double funds;
+		try {
+			funds = Double.parseDouble(message);
+		} catch (Exception e) {
+			BalanceFunctions.raiseFailure("You must Input a valid number", this);
+			return;
+		}
+		
+		BalanceFunctions.addFunds(funds, this);
 		
 		double amount = Double.parseDouble(message);
 		String description = descriptionText.getText().toString();

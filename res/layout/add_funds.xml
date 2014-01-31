@@ -11,7 +11,7 @@
         android:layout_gravity="center"
         android:textSize="24sp"
         android:layout_height="wrap_content"
-        android:hint="Description" />
+        android:hint="@string/text_description" />
     <TextView 
         android:id="@+id/display_value"
         android:layout_columnSpan="3"
@@ -19,33 +19,33 @@
         android:textSize="24sp"
         android:text="" />
     
-    <Button android:text="1" 
+    <Button android:text="@string/text_1" 
         android:onClick="keyPress"/>
-	<Button android:text="2"
+	<Button android:text="@string/text_2"
         android:onClick="keyPress" />
-	<Button android:text="3"
+	<Button android:text="@string/text_3"
         android:onClick="keyPress" />
-	<Button android:text="4"
+	<Button android:text="@string/text_4"
         android:onClick="keyPress" />
-	<Button android:text="5"
+	<Button android:text="@string/text_5"
         android:onClick="keyPress" />
-	<Button android:text="6"
+	<Button android:text="@string/text_6"
         android:onClick="keyPress" />
-	<Button android:text="7"
+	<Button android:text="@string/text_7"
         android:onClick="keyPress" />
-	<Button android:text="8"
+	<Button android:text="@string/text_8"
         android:onClick="keyPress" />
-	<Button android:text="9"
+	<Button android:text="@string/text_9"
         android:onClick="keyPress" />
-	<Button android:text="."
+	<Button android:text="@string/text_."
         android:onClick="keyPress" />
-	<Button android:text="0"
+	<Button android:text="@string/text_0"
         android:onClick="keyPress" />
-	<Button android:text="C" 
+	<Button android:text="@string/text_C" 
 	    android:onClick="keyPress" />
 	<Button
         android:layout_gravity="fill"
         android:layout_columnSpan="3"
-        android:text="Add Money" 
+        android:text="@string/text_add_money" 
         android:onClick="addFunds"/>
 </GridLayout>

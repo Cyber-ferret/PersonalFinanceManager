@@ -8,31 +8,31 @@
     android:padding="10dp" >
     
     <Button
-        android:id="@+id/view_transaction_history"
+        android:id="@+id/view_spending_history"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="View Transaction History" 
+        android:text="@string/menu_spending_history" 
         android:onClick="openSelected"/>
 
      <Button
-        android:id="@+id/spending_pie_graph"
+        android:id="@+id/spending_habits"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Spending Pie Graph" 
+        android:text="@string/menu_spending_habits" 
         android:onClick="openSelected"/>
      
      <Button
         android:id="@+id/bill_due_dates"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Bill Due Dates" 
+        android:text="@string/menu_bill_due_dates" 
         android:onClick="openSelected"/>
      
      <Button
         android:id="@+id/view_daily_allowance"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="View Daily Allowance" 
+        android:text="@string/menu_daily_allowance" 
         android:onClick="openSelected"/>
 
 </LinearLayout>

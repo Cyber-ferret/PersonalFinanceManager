@@ -16,47 +16,31 @@ public class BalanceFunctions {
 	 * gets the text field then updates the balance via the
 	 * updateBalance method.  It then displays the new balance.
 	 */
-	public static boolean deductFunds(String message, View view, Context context)
+	public static boolean deductFunds(Double cost, View view, Context context)
 	{
-		try 
-		{
-			BigDecimal value = new BigDecimal(message);
-			BigDecimal balance = getBalance(context);
-			updateBalance(balance.subtract(value), context);
-			return true;
-		}
-		catch (NumberFormatException e)
-		{
-			raiseFailure("Could not interpret " +  message + " as a dollar amount.", false, context);
-			return false;
-		}
+		BigDecimal value = new BigDecimal(cost);
+		BigDecimal balance = getBalance(context);
+		updateBalance(balance.subtract(value), context);
+		return true;
 	}
 	
 	/**
 	 * gets the text view then updates the balance via the
 	 * updateBalance method.  It then displays the new balance.
 	 */
-	public static boolean addFunds(String message, Context context)
+	public static boolean addFunds(Double funds, Context context)
 	{
-		try 
-		{
-			BigDecimal value = new BigDecimal(message);
-			BigDecimal balance = getBalance(context);
-			updateBalance(balance.add(value), context);
-			return true;
-		}
-		catch (NumberFormatException e)
-		{
-			raiseFailure("Could not interpret " +  message + " as a dollar amount.", false, context);
-			return false;
-		}
+		BigDecimal value = new BigDecimal(funds);
+		BigDecimal balance = getBalance(context);
+		updateBalance(balance.add(value), context);
+		return true;
 	}
 	
 	/**
 	 * Pops up a dialogue stating Error: message.
 	 * is closeApp is true, it will close the application.
 	 */
-	public static void raiseFailure(String message, boolean closeApp, Context c)
+	public static void raiseFailure(String message, Context c)
 	{
 		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(c);
 		 
@@ -71,11 +55,6 @@ public class BalanceFunctions {
  
 		// show it
 		alertDialog.show();
-		
-		if(closeApp)
-		{
-			//TODO something...
-		}
 	}
 	
 	public static BigDecimal getBalance(Context context)

@@ -2,18 +2,14 @@ package info;
 
 import java.util.ArrayList;
 
-import com.example.personalfinancemanager.R;
-
-import sqllite.Table_RecurringExpenses;
-
 import nonActivities.BalanceFunctions;
+import sqllite.Table_RecurringExpenses;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
@@ -22,6 +18,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.example.personalfinancemanager.R;
 
 
 public class RecurringExpensesActivity extends Activity {
@@ -41,13 +39,6 @@ public class RecurringExpensesActivity extends Activity {
 			this.addButton(rows.get(i).name, rows.get(i).ID);
 		}
 	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.recurring_expenses, menu);
-		return true;
-	}
 	
 	TextView nameInput, costInput;
     Spinner occurrenceInput, dayInput, monthInput, yearInput;
@@ -59,7 +50,7 @@ public class RecurringExpensesActivity extends Activity {
 	    ContextThemeWrapper mTheme = new ContextThemeWrapper(this,
 	            R.style.AppTheme);
 
-	    view = inflater.inflate(R.layout.reucrring_expense_prompt, null);
+	    view = inflater.inflate(R.layout.bill_prompt, null);
 	    
 	    nameInput = (TextView) view.findViewById(R.id.name_input);
 	    costInput = (TextView) view.findViewById(R.id.cost_input);
@@ -105,10 +96,10 @@ public class RecurringExpensesActivity extends Activity {
 	    int year = yearInput.getSelectedItemPosition();
 	    
 	    if(name.trim().length() <= 0) {
-	    	BalanceFunctions.raiseFailure("Your name field was empty.  Cannot add", false, this);
+	    	BalanceFunctions.raiseFailure("Your name field was empty.  Cannot add", this);
 	    	return;
 	    } else if(cost.trim().length() <= 0) {
-	    	BalanceFunctions.raiseFailure("Your cost field was empty.  Cannot add", false, this);
+	    	BalanceFunctions.raiseFailure("Your cost field was empty.  Cannot add", this);
 	    	return;
 	    } 
 	    
@@ -128,7 +119,7 @@ public class RecurringExpensesActivity extends Activity {
 	    ContextThemeWrapper mTheme = new ContextThemeWrapper(this,
 	            R.style.AppTheme);
 
-	    view = inflater.inflate(R.layout.reucrring_expense_edit_prompt, null);
+	    view = inflater.inflate(R.layout.bill_edit_prompt, null);
 	    
 	    nameInput = (TextView) view.findViewById(R.id.name_input);
 	    costInput = (TextView) view.findViewById(R.id.cost_input);
@@ -168,10 +159,10 @@ public class RecurringExpensesActivity extends Activity {
 	    int newYear = yearInput.getSelectedItemPosition();
 	    
 	    if(newName.trim().length() <= 0) {
-	    	BalanceFunctions.raiseFailure("Your name field was empty.  Cannot add", false, this);
+	    	BalanceFunctions.raiseFailure("Your name field was empty.  Cannot add", this);
 	    	return;
 	    } else if(newName.trim().length() <= 0) {
-	    	BalanceFunctions.raiseFailure("Your cost field was empty.  Cannot add", false, this);
+	    	BalanceFunctions.raiseFailure("Your cost field was empty.  Cannot add", this);
 	    	return;
 	    }
 	    

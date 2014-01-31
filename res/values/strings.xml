@@ -1,40 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <string name="show_balance">Show Balance</string>
-    <string name="add_funds_option">Add Funds</string>
-    <string name="edit_income_option">Edit Income</string>
-    <string name="edit_recurring_expenses_option">Edit Recurring Expenses</string>
-    <string name="edit_settings_option">Settings</string>
-    <string name="app_name">Finance Manager</string>
-    <string name="title_activity_display_message">Jee boo</string>
+	
+    <!-- Random String.  Dont know what it does. -->
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="title_activity_recurring_expenses">RecurringExpensesActivity</string>
-    <string name="activity_display_message">How much money should be added?</string>
-    <string name="title_activity_manage_expense_categories">Manage Categories</string>
-    <string name="title_activity_income">IncomeActivity</string>
-    <string name="title_activity_home_screen">HomeScreen</string>
-    <string name="title_activity_user_guide">UserGuide</string>
-    <string name="title_activity_information_menu">InformationMenu</string>
-    <string name="title_activity_statistics_menu">StatisticsMenu</string>
+    
+    <!-- Activity Titles -->
+    <string name="app_name">Finance Manager</string>
+    <string name="title_activity_deduct_funds">Deduct Funds</string>
+    <string name="title_activity_display_message">Activity Message</string>
+    <string name="title_activity_bills">Bills</string>
+    <string name="title_activity_manage_expense_categories">Spending Categories</string>
+    <string name="title_activity_income">Income</string>
+    <string name="title_activity_home_screen">Home Screen</string>
+    <string name="title_activity_user_guide">User Guide</string>
+    <string name="title_activity_information_menu">Info Menu</string>
+    <string name="title_activity_statistics_menu">Statistics Menu</string>
+    <string name="title_activity_add_funds">Add Money</string>
+    <string name="title_activity_transaction_history">Spending History</string>
+    <string name="title_activity_spending_habits">Spending Habits</string>
+    <string name="title_activity_bill_due_dates">Bill Due Dates</string>
+    <string name="title_activity_savings">Savings</string>
+    
+    <!-- Home Menu Strings -->
+    <string name="menu_deduct_funds">I Spent Money</string>
+    <string name="menu_add_funds">Add Money</string>
+    <string name="menu_edit_information">Edit Information</string>
+    <string name="menu_statistics">Statistics</string>
+    <string name="menu_user_guide">User Guide</string>
+    
+    <!-- Information Menu Strings -->
+    <string name="menu_edit_income">Edit Income</string>
+    <string name="menu_edit_bills">Edit Bills</string>
+    <string name="menu_edit_spending_categories">Edit Spending Categories</string>
+    <string name="menu_edit_savings">Edit Savings</string>
+    
+    <!-- Statistics Menu Strings -->
+    <string name="menu_spending_history">Spending History</string>
+    <string name="menu_spending_habits">Spending Habits</string>
+    <string name="menu_bill_due_dates">Bill Due Dates</string>
+    <string name="menu_daily_allowance">Daily Allowance</string>
+    
+    <!-- Non Context Specific Strings -->
+    <string name="text_update">Update</string>
+    <string name="text_delete">Delete</string>
+    <string name="add_new">Add New</string>
+    <string name="text_load_more">Load More</string>
+    <string name="text_description">Description</string>
+    <string name="text_add_money">Add Money</string>
+    <string name="text_add_charge">Add Charge</string>
+    <string name="text_0">0</string>
+    <string name="text_1">1</string>
+    <string name="text_2">2</string>
+    <string name="text_3">3</string>
+    <string name="text_4">4</string>
+    <string name="text_5">5</string>
+    <string name="text_6">6</string>
+    <string name="text_7">7</string>
+    <string name="text_8">8</string>
+    <string name="text_9">9</string>
+    <string name="text_.">.</string>
+    <string name="text_C">C</string>
+    
+    <!--  Context Specific Strings -->
     <string name="balance_underline"><u>Balance</u></string>
-    <string name="example_use">Let\'s say you\'re salaried at $40,000 a year.  But your bi-weekly pay check is $1230.  Multiply it by 26 (number of bi-weeks in a year) and you make ~$32,000 after taxes.\n
+    <string name="income_header_text">Annual Income (AFTER TAXES)</string>
+    <string name="create_new_category">Create New Category</string>
+    <string name="add_new_bill">Add New Bill</string>
+    <string name="savings_activity_header">What do you want to save per week?</string>
+    <string name="category_name">Category Name</string>
+    
+    <!-- Bill Prompt Strings -->
+    <string name="bill_name_bill">Name This Expense</string>
+    <string name="bill_cost">What does it cost?</string>
+    <string name="bill_next_due">Next Due Date?</string>
+    
+    
+    <!-- User Guide...... -->
+    <string name ="user_guide">
+<i>I developed this app to make sure I wasn\'t spending too much of my pay check in my post-college career (and to help me manage repaying my student loans).  
+I put it on the app store in hopes that someone else may find it as useful as I do. </i> \n
+\n
+Here are explanations by menu.
+\n
+\n
+<b><u>Home Screen Menu</u></b>\n
+<b>I Spent Money:</b> Out of pocket expenses.\n
+<b>Add Money:</b> Adds money to your balance (whenever you get money randomly).\n
+<b>Edit Information:</b> Specify your income, bills, savings, and categories of things you spend money on.\n
+<b>Statictics:</b> View allowance, spending habits, due dates of bills, and your expenses history.\n
+\n
+\n
+<b><u>Edit Information Menu</u></b>\n
+<b>Edit My Income:</b> What you make (after taxes).\n
+<b>Edit Bills:</b> Specify your bills, what they cost, on what time intervals, and when they\'re due.\n
+<b>Edit Spending Categories:</b> Specify what you spend money on. (groceries, eating out, gas, car maintenance, misc.).\n
+<b>Edit Savings:</b> Specify what you want to save each week.\n
+\n
+\n
+<b><u>Statistics</u></b>\n
+<b>Spending History:</b> Your expenses (and additions) to your balance.\n
+<b>Spending Habits:</b> Shows you in percentages what you spend money on (based on your specified categories).\n
+<b>Bill Due Dates:</b> Lists your bills in the order they are due.\n
+<b>Daily Allowance:</b> Shows you how much you can spend each day.\n
+\n
+\n
+<b><u>Example Use</u></b>\n
+Let\'s say you\'re salaried at $40,000 a year and paid bi-weekly.  Your bi-weekly pay check is $1230 after taxes.  Multiply that by 26 (number of bi-weeks in a year) and you net ~$32,000.\n
 \n
 So an example would look like this.\n
 ANNUAL INCOME: 32000\n
 \n
-REPEATING EXPENSES: Rent|500 per month, Student Loans|500 per month, Savings|500 per month, Cell Phone|60 per month, Cable/Internet|80 per month, Car Insurance|400 per bi-year, Electric|80 per month\n
+REPEATING EXPENSES: Rent|500 per month, Student Loans|500 per month, Cell Phone|60 per month, Cable/Internet|80 per month, Car Insurance|400 per bi-year, Electric|80 per month\n
+\n 
+SAVINGS: $100 per week \n
 \n
-EXPENSE CATEGORIES: Groceries, Gas, Eating Out, Clothes, Fun Purchases, Car Maintenance, Miscellaneous\n
+EXPENSE CATEGORIES: Groceries, Gas, Eating Out, Clothes, Fun Purchases, Car Maintenance, Exercise Equipment, Miscellaneous\n
 \n
-So your \'bills\' (including savings) are $21,440 per year, leaving you with $10,560 for spending on your "Expense Categories", or about $30 per day.\n
+So your bills are $15,440 per year, you save $5,200 per year, and you can spend $11,360 (~$31 per day) on everything else (in Expense Categories).\n
 \n
-So if over the course of two weeks our imaginary person spends $80 on gas, $120 eating out, $80 on groceries, and buys a $30 gift for their S.O., their balance will be at $110 at the end of 2 weeks (It\'s a good idea to keep a buffer in case of something like a speeding ticket, but an emergency expense is also why it\'s VERY important to allocate money to savings).</string>
-    <string name="title_activity_add_funds">AddFundsActivity</string>
-    <string name="title_activity_transaction_history">TransactionHistoryActivity</string>
-    <string name="title_activity_spending_habits">SpendingHabits</string>
-    <string name="title_activity_bill_due_dates">BillDueDates</string>
-    <string name="title_activity_savings">SavingsActivity</string>
+So if over the course of two weeks you spend $80 on gas, $120 eating out, $80 on groceries, and buy a $30 gift for someone, your balance will be $125 at the end of 2 weeks.</string>
 
 </resources>

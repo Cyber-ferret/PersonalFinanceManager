@@ -15,7 +15,7 @@
         android:id="@+id/add_category_button"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Create New Category"
+        android:text="@string/create_new_category"
         android:onClick="showNewCategoryPrompt"/>
 
 	</LinearLayout>

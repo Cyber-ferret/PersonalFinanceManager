@@ -5,17 +5,16 @@ import java.io.FileOutputStream;
 import java.math.BigDecimal;
 import java.util.Scanner;
 
-import com.example.personalfinancemanager.R;
-
-import android.os.Bundle;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
-import android.view.Menu;
+import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.example.personalfinancemanager.R;
 
 public class SavingsActivity extends Activity {
 
@@ -26,13 +25,6 @@ public class SavingsActivity extends Activity {
 		
 		EditText t = (EditText) this.findViewById(R.id.savings);
 		t.setText(this.getSavings().toString());
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.savings, menu);
-		return true;
 	}
 	
 	public void updateSavings(View view)

@@ -31,45 +31,41 @@ public final class R {
         public static final int round_button=0x7f020001;
     }
     public static final class id {
-        public static final int ScrollView01=0x7f09000d;
-        public static final int action_settings=0x7f090021;
-        public static final int addFunds=0x7f090022;
-        public static final int add_category_button=0x7f09000f;
-        public static final int add_expense=0x7f090003;
-        public static final int add_funds=0x7f090004;
-        public static final int add_recurring_expense_button=0x7f090011;
-        public static final int add_recurring_expense_linearlayout=0x7f090010;
-        public static final int balance_display=0x7f090002;
-        public static final int bill_due_dates=0x7f090015;
-        public static final int cost_input=0x7f09001b;
-        public static final int day_input=0x7f09001d;
-        public static final int display_value=0x7f090018;
-        public static final int editCategories=0x7f090026;
-        public static final int editIncome=0x7f090023;
-        public static final int editRecurringExpenses=0x7f090024;
-        public static final int edit_expense_categories=0x7f09000b;
-        public static final int edit_income=0x7f090009;
-        public static final int edit_information=0x7f090005;
-        public static final int edit_recurring_expenses=0x7f09000a;
-        public static final int edit_savings=0x7f09000c;
-        public static final int expense_category=0x7f09001a;
-        public static final int funding_description=0x7f090017;
-        public static final int income=0x7f090008;
-        public static final int layout_root=0x7f090001;
-        public static final int manage_categories_linearlayout=0x7f09000e;
-        public static final int message_text=0x7f090020;
-        public static final int month_input=0x7f09001e;
-        public static final int name_input=0x7f090019;
-        public static final int occurance_input=0x7f09001c;
-        public static final int savings=0x7f090012;
-        public static final int settings=0x7f090025;
-        public static final int spending_pie_graph=0x7f090014;
-        public static final int statistics=0x7f090006;
-        public static final int transaction_history_linearlayout=0x7f090000;
-        public static final int user_guide=0x7f090007;
-        public static final int view_daily_allowance=0x7f090016;
-        public static final int view_transaction_history=0x7f090013;
-        public static final int year_input=0x7f09001f;
+        public static final int ScrollView01=0x7f080000;
+        public static final int add_category_button=0x7f08000f;
+        public static final int add_expense=0x7f080004;
+        public static final int add_funds=0x7f080005;
+        public static final int add_recurring_expense_button=0x7f080011;
+        public static final int add_recurring_expense_linearlayout=0x7f080010;
+        public static final int balance_display=0x7f080003;
+        public static final int bill_due_dates=0x7f080017;
+        public static final int cost_input=0x7f08001c;
+        public static final int day_input=0x7f08001e;
+        public static final int display_value=0x7f08001a;
+        public static final int edit_bills=0x7f08000b;
+        public static final int edit_income=0x7f08000a;
+        public static final int edit_information=0x7f080006;
+        public static final int edit_savings=0x7f08000d;
+        public static final int edit_spending_categories=0x7f08000c;
+        public static final int funding_description=0x7f080019;
+        public static final int income=0x7f080009;
+        public static final int layout_root=0x7f080002;
+        public static final int manage_categories_linearlayout=0x7f08000e;
+        public static final int message_text=0x7f080022;
+        public static final int month_input=0x7f08001f;
+        public static final int name_input=0x7f08001b;
+        public static final int occurance_input=0x7f08001d;
+        public static final int savings=0x7f080012;
+        public static final int spending_category=0x7f080021;
+        public static final int spending_habits=0x7f080016;
+        public static final int spending_habits_linearlayout=0x7f080013;
+        public static final int statistics=0x7f080007;
+        public static final int time_period=0x7f080014;
+        public static final int transaction_history_linearlayout=0x7f080001;
+        public static final int user_guide=0x7f080008;
+        public static final int view_daily_allowance=0x7f080018;
+        public static final int view_spending_history=0x7f080015;
+        public static final int year_input=0x7f080020;
     }
     public static final class layout {
         public static final int activity_bill_due_dates=0x7f030000;
@@ -84,53 +80,90 @@ public final class R {
         public static final int activity_transaction_history=0x7f030009;
         public static final int activity_user_guide=0x7f03000a;
         public static final int add_funds=0x7f03000b;
-        public static final int category_edit_prompt=0x7f03000c;
-        public static final int category_prompt=0x7f03000d;
-        public static final int deduct_funds=0x7f03000e;
-        public static final int reucrring_expense_edit_prompt=0x7f03000f;
-        public static final int reucrring_expense_prompt=0x7f030010;
+        public static final int bill_edit_prompt=0x7f03000c;
+        public static final int bill_prompt=0x7f03000d;
+        public static final int category_edit_prompt=0x7f03000e;
+        public static final int category_prompt=0x7f03000f;
+        public static final int deduct_funds=0x7f030010;
         public static final int text_pop_up=0x7f030011;
     }
-    public static final class menu {
-        public static final int bill_due_dates=0x7f080000;
-        public static final int home_screen=0x7f080001;
-        public static final int income=0x7f080002;
-        public static final int information_menu=0x7f080003;
-        public static final int main=0x7f080004;
-        public static final int manage_expense_categories=0x7f080005;
-        public static final int recurring_expenses=0x7f080006;
-        public static final int savings=0x7f080007;
-        public static final int settings=0x7f080008;
-        public static final int spending_habits=0x7f080009;
-        public static final int statistics_menu=0x7f08000a;
-        public static final int transaction_history=0x7f08000b;
-        public static final int user_guide=0x7f08000c;
-    }
     public static final class string {
-        public static final int action_settings=0x7f060007;
-        public static final int activity_display_message=0x7f06000a;
-        public static final int add_funds_option=0x7f060001;
-        public static final int app_name=0x7f060005;
-        public static final int balance_underline=0x7f060011;
-        public static final int edit_income_option=0x7f060002;
-        public static final int edit_recurring_expenses_option=0x7f060003;
-        public static final int edit_settings_option=0x7f060004;
-        public static final int example_use=0x7f060012;
-        public static final int hello_world=0x7f060008;
-        public static final int show_balance=0x7f060000;
-        public static final int title_activity_add_funds=0x7f060013;
-        public static final int title_activity_bill_due_dates=0x7f060016;
-        public static final int title_activity_display_message=0x7f060006;
-        public static final int title_activity_home_screen=0x7f06000d;
-        public static final int title_activity_income=0x7f06000c;
-        public static final int title_activity_information_menu=0x7f06000f;
-        public static final int title_activity_manage_expense_categories=0x7f06000b;
-        public static final int title_activity_recurring_expenses=0x7f060009;
-        public static final int title_activity_savings=0x7f060017;
-        public static final int title_activity_spending_habits=0x7f060015;
-        public static final int title_activity_statistics_menu=0x7f060010;
-        public static final int title_activity_transaction_history=0x7f060014;
-        public static final int title_activity_user_guide=0x7f06000e;
+        /**  Random String.  Dont know what it does. 
+         */
+        public static final int action_settings=0x7f060000;
+        public static final int add_new=0x7f06001f;
+        public static final int add_new_bill=0x7f060033;
+        /**  Activity Titles 
+         */
+        public static final int app_name=0x7f060001;
+        /**   Context Specific Strings 
+         */
+        public static final int balance_underline=0x7f060030;
+        public static final int bill_cost=0x7f060037;
+        /**  Bill Prompt Strings 
+         */
+        public static final int bill_name_bill=0x7f060036;
+        public static final int bill_next_due=0x7f060038;
+        public static final int category_name=0x7f060035;
+        public static final int create_new_category=0x7f060032;
+        public static final int income_header_text=0x7f060031;
+        public static final int menu_add_funds=0x7f060011;
+        public static final int menu_bill_due_dates=0x7f06001b;
+        public static final int menu_daily_allowance=0x7f06001c;
+        /**  Home Menu Strings 
+         */
+        public static final int menu_deduct_funds=0x7f060010;
+        public static final int menu_edit_bills=0x7f060016;
+        /**  Information Menu Strings 
+         */
+        public static final int menu_edit_income=0x7f060015;
+        public static final int menu_edit_information=0x7f060012;
+        public static final int menu_edit_savings=0x7f060018;
+        public static final int menu_edit_spending_categories=0x7f060017;
+        public static final int menu_spending_habits=0x7f06001a;
+        /**  Statistics Menu Strings 
+         */
+        public static final int menu_spending_history=0x7f060019;
+        public static final int menu_statistics=0x7f060013;
+        public static final int menu_user_guide=0x7f060014;
+        public static final int savings_activity_header=0x7f060034;
+        public static final int text__=0x7f06002e;
+        public static final int text_0=0x7f060024;
+        public static final int text_1=0x7f060025;
+        public static final int text_2=0x7f060026;
+        public static final int text_3=0x7f060027;
+        public static final int text_4=0x7f060028;
+        public static final int text_5=0x7f060029;
+        public static final int text_6=0x7f06002a;
+        public static final int text_7=0x7f06002b;
+        public static final int text_8=0x7f06002c;
+        public static final int text_9=0x7f06002d;
+        public static final int text_C=0x7f06002f;
+        public static final int text_add_charge=0x7f060023;
+        public static final int text_add_money=0x7f060022;
+        public static final int text_delete=0x7f06001e;
+        public static final int text_description=0x7f060021;
+        public static final int text_load_more=0x7f060020;
+        /**  Non Context Specific Strings 
+         */
+        public static final int text_update=0x7f06001d;
+        public static final int title_activity_add_funds=0x7f06000b;
+        public static final int title_activity_bill_due_dates=0x7f06000e;
+        public static final int title_activity_bills=0x7f060004;
+        public static final int title_activity_deduct_funds=0x7f060002;
+        public static final int title_activity_display_message=0x7f060003;
+        public static final int title_activity_home_screen=0x7f060007;
+        public static final int title_activity_income=0x7f060006;
+        public static final int title_activity_information_menu=0x7f060009;
+        public static final int title_activity_manage_expense_categories=0x7f060005;
+        public static final int title_activity_savings=0x7f06000f;
+        public static final int title_activity_spending_habits=0x7f06000d;
+        public static final int title_activity_statistics_menu=0x7f06000a;
+        public static final int title_activity_transaction_history=0x7f06000c;
+        public static final int title_activity_user_guide=0x7f060008;
+        /**  User Guide...... 
+         */
+        public static final int user_guide=0x7f060039;
     }
     public static final class style {
         /** 
